@@ -300,6 +300,7 @@ const LABELS = __LABELS__;
 const CC     = __CAT_COLORS__;
 const ORDER  = __MONTH_ORDER__;
 let CH = {};
+const CANVAS_IDS = ['cBar','cCat','cPizza','cCartoes'];
 
 const fmt = v => 'R$\u00a0' + Math.abs(+v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
 const fmtS = v => (v<0?'\u2212':'')+fmt(v);
@@ -318,7 +319,20 @@ function getCatTotals(d){
   all.forEach(x=>{ t[x.cat]=(t[x.cat]||0)+x.val; });
   return t;
 }
-function dc(){Object.values(CH).forEach(c=>{try{c.destroy();}catch{}});CH={};}
+
+// Destrói charts e recria os canvas do zero (evita bug de reuso do Chart.js)
+function dc(){
+  Object.values(CH).forEach(c=>{try{c.destroy();}catch{}});
+  CH={};
+  CANVAS_IDS.forEach(id=>{
+    const old=document.getElementById(id);
+    if(old){
+      const n=document.createElement('canvas');
+      n.id=id;
+      old.parentNode.replaceChild(n,old);
+    }
+  });
+}
 
 function mkCharts(d){
   dc();
@@ -373,13 +387,29 @@ function mkItems(items){
     </div>`).join('');
 }
 
+function setNoData(msg){
+  dc(); // limpa e recria canvases
+  ['tbody-gastos','tbody-receitas','tbody-trans'].forEach(id=>{
+    document.getElementById(id).innerHTML=
+      `<tr><td colspan="5" class="no-data">${msg}</td></tr>`;
+  });
+  document.getElementById('cartao-grid').innerHTML=
+    `<div style="grid-column:1/-1;text-align:center;color:#475569;padding:30px">${msg}</div>`;
+  ['v-rec','v-gas','v-sal','v-pag','v-prec'].forEach(id=>{
+    document.getElementById(id).textContent='—';
+  });
+  document.getElementById('card-saldo').className='card c-pos';
+}
+
 function render(d){
   if(!d){
-    ['tbody-gastos','tbody-receitas','tbody-trans'].forEach(id=>{
-      document.getElementById(id).innerHTML='<tr><td colspan="5" class="no-data">Sem dados para este mês.</td></tr>';
-    });
-    document.getElementById('cartao-grid').innerHTML='<p class="no-data">Sem dados para este mês.</p>';
-    dc(); return;
+    setNoData('Sem dados para este mês ainda.');
+    return;
+  }
+  // Mês com dados mas todos zerados
+  if(d.total_gastos===0 && d.total_receitas===0){
+    setNoData('Este mês ainda não tem dados preenchidos na planilha.');
+    return;
   }
 
   // Cards de resumo

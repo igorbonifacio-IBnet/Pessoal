@@ -57,7 +57,7 @@ footer{text-align:center;color:#334155;font-size:.7rem;margin-top:20px;
 </head>
 <body>
 <h1>💰 Finanças Igor &amp; Nath</h1>
-<p class="subtitle">Atualizado: 29/03/2026 02:26 UTC</p>
+<p class="subtitle">Atualizado: 29/03/2026 02:27 UTC</p>
 <div class="month-bar"><button class="month-btn" data-month="MARÇO" onclick="switchMonth('MARÇO')">Mar/26</button><button class="month-btn" data-month="ABRIL" onclick="switchMonth('ABRIL')">Abr/26</button><button class="month-btn" data-month="MAIO" onclick="switchMonth('MAIO')">Mai/26</button><button class="month-btn" data-month="JUNHO" onclick="switchMonth('JUNHO')">Jun/26</button><button class="month-btn" data-month="JULHO" onclick="switchMonth('JULHO')">Jul/26</button><button class="month-btn" data-month="AGOSTO" onclick="switchMonth('AGOSTO')">Ago/26</button><button class="month-btn" data-month="SETEMBRO" onclick="switchMonth('SETEMBRO')">Set/26</button><button class="month-btn" data-month="OUTUBRO" onclick="switchMonth('OUTUBRO')">Out/26</button><button class="month-btn" data-month="NOVEMBRO" onclick="switchMonth('NOVEMBRO')">Nov/26</button><button class="month-btn" data-month="DEZEMBRO26" onclick="switchMonth('DEZEMBRO26')">Dez/26</button></div>
 
 <div class="cards">
@@ -109,6 +109,7 @@ const LABELS = {"MARÇO": "Mar/26", "ABRIL": "Abr/26", "MAIO": "Mai/26", "JUNHO"
 const CC     = {"Alimentação": "#22c55e", "Transporte": "#3b82f6", "Saúde": "#ec4899", "Pet": "#f97316", "Vestuário": "#a855f7", "Casa": "#14b8a6", "Lazer": "#f59e0b", "Eletrônicos": "#6366f1", "Serviços": "#94a3b8", "Outros": "#475569"};
 const ORDER  = ["MARÇO", "ABRIL", "MAIO", "JUNHO", "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO26"];
 let CH = {};
+const CANVAS_IDS = ['cBar','cCat','cPizza','cCartoes'];
 
 const fmt = v => 'R$\u00a0' + Math.abs(+v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
 const fmtS = v => (v<0?'\u2212':'')+fmt(v);
@@ -127,7 +128,20 @@ function getCatTotals(d){
   all.forEach(x=>{ t[x.cat]=(t[x.cat]||0)+x.val; });
   return t;
 }
-function dc(){Object.values(CH).forEach(c=>{try{c.destroy();}catch{}});CH={};}
+
+// Destrói charts e recria os canvas do zero (evita bug de reuso do Chart.js)
+function dc(){
+  Object.values(CH).forEach(c=>{try{c.destroy();}catch{}});
+  CH={};
+  CANVAS_IDS.forEach(id=>{
+    const old=document.getElementById(id);
+    if(old){
+      const n=document.createElement('canvas');
+      n.id=id;
+      old.parentNode.replaceChild(n,old);
+    }
+  });
+}
 
 function mkCharts(d){
   dc();
@@ -182,13 +196,29 @@ function mkItems(items){
     </div>`).join('');
 }
 
+function setNoData(msg){
+  dc(); // limpa e recria canvases
+  ['tbody-gastos','tbody-receitas','tbody-trans'].forEach(id=>{
+    document.getElementById(id).innerHTML=
+      `<tr><td colspan="5" class="no-data">${msg}</td></tr>`;
+  });
+  document.getElementById('cartao-grid').innerHTML=
+    `<div style="grid-column:1/-1;text-align:center;color:#475569;padding:30px">${msg}</div>`;
+  ['v-rec','v-gas','v-sal','v-pag','v-prec'].forEach(id=>{
+    document.getElementById(id).textContent='—';
+  });
+  document.getElementById('card-saldo').className='card c-pos';
+}
+
 function render(d){
   if(!d){
-    ['tbody-gastos','tbody-receitas','tbody-trans'].forEach(id=>{
-      document.getElementById(id).innerHTML='<tr><td colspan="5" class="no-data">Sem dados para este mês.</td></tr>';
-    });
-    document.getElementById('cartao-grid').innerHTML='<p class="no-data">Sem dados para este mês.</p>';
-    dc(); return;
+    setNoData('Sem dados para este mês ainda.');
+    return;
+  }
+  // Mês com dados mas todos zerados
+  if(d.total_gastos===0 && d.total_receitas===0){
+    setNoData('Este mês ainda não tem dados preenchidos na planilha.');
+    return;
   }
 
   // Cards de resumo

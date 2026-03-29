@@ -6,10 +6,21 @@ from datetime import datetime, timezone
 
 SHEET_ID = '1xOB9bCLSkGPsZbXPHOuZFnA8_KKXMS6sbrrIsHCRak0'
 
-MONTH_SHEETS = [
-    'MARÇO','ABRIL','MAIO','JUNHO','JULHO',
-    'AGOSTO','SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO26'
-]
+# GIDs reais de cada aba (mais confiável que usar nome)
+SHEET_GIDS = {
+    'MARÇO':      '1903168850',
+    'ABRIL':      '1027024051',
+    'MAIO':       '1609442091',
+    'JUNHO':      '133954216',
+    'JULHO':      '1229137310',
+    'AGOSTO':     '1524000498',
+    'SETEMBRO':   '1389769078',
+    'OUTUBRO':    '148537219',
+    'NOVEMBRO':   '2013967425',
+    'DEZEMBRO26': '23317820',
+}
+
+MONTH_SHEETS = list(SHEET_GIDS.keys())
 MONTH_LABELS = {
     'MARÇO':'Mar/26','ABRIL':'Abr/26','MAIO':'Mai/26','JUNHO':'Jun/26','JULHO':'Jul/26',
     'AGOSTO':'Ago/26','SETEMBRO':'Set/26','OUTUBRO':'Out/26','NOVEMBRO':'Nov/26','DEZEMBRO26':'Dez/26'
@@ -50,14 +61,16 @@ def cat(desc):
     return 'Outros'
 
 def fetch_csv(sheet_name):
+    gid = SHEET_GIDS[sheet_name]
     url = (f'https://docs.google.com/spreadsheets/d/{SHEET_ID}'
-           f'/export?format=csv&sheet={urllib.parse.quote(sheet_name)}')
+           f'/export?format=csv&gid={gid}')
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
-            return r.read().decode('utf-8-sig')
+            raw = r.read()
+            return raw.decode('utf-8-sig')
     except Exception as e:
-        print(f'  Aviso: não carregou {sheet_name}: {e}')
+        print(f'  Aviso: não carregou {sheet_name} (gid={gid}): {e}')
         return None
 
 def pc(v):

@@ -214,11 +214,31 @@ HTML = r"""<!DOCTYPE html>
 body{font-family:'Segoe UI',sans-serif;background:#0f172a;color:#e2e8f0;padding:20px}
 h1{text-align:center;font-size:1.7rem;color:#f8fafc;margin-bottom:6px}
 .subtitle{text-align:center;color:#64748b;font-size:.8rem;margin-bottom:20px}
-.month-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:26px}
+.month-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:14px}
 .month-btn{padding:7px 16px;border-radius:20px;border:1.5px solid #334155;background:transparent;
   color:#94a3b8;cursor:pointer;font-size:.82rem;font-weight:500;transition:all .15s}
 .month-btn:hover{border-color:#3b82f6;color:#93c5fd}
 .month-btn.active{background:#3b82f6;border-color:#3b82f6;color:#fff;font-weight:700}
+/* ── Filter bar ── */
+.filter-bar{background:#1e293b;border-radius:12px;padding:14px 16px;margin-bottom:20px;
+  display:flex;flex-direction:column;gap:10px}
+.fg-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fg-label{font-size:.68rem;color:#64748b;text-transform:uppercase;letter-spacing:.06em;
+  white-space:nowrap;margin-right:4px;padding:3px 0}
+.chip{padding:4px 13px;border-radius:999px;border:1.5px solid #334155;background:transparent;
+  color:#94a3b8;cursor:pointer;font-size:.75rem;font-weight:500;transition:all .15s}
+.chip:hover{border-color:#60a5fa;color:#93c5fd}
+.chip.active{background:#3b82f6;border-color:#3b82f6;color:#fff;font-weight:700}
+.chip-clear{border-color:#475569;color:#64748b;margin-left:6px}
+.chip-clear:hover{border-color:#ef4444;color:#fca5a5}
+.chip-pago.active{background:#22c55e;border-color:#22c55e}
+.chip-nao.active{background:#ef4444;border-color:#ef4444}
+/* ── Refresh button (fixed) ── */
+.refresh-btn{position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;
+  background:#3b82f6;border:none;color:#fff;font-size:1.4rem;cursor:pointer;
+  box-shadow:0 4px 14px #0008;transition:background .2s,transform .3s;z-index:999;line-height:1}
+.refresh-btn:hover{background:#2563eb;transform:rotate(180deg)}
+/* ── Cards ── */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:22px}
 .card{background:#1e293b;border-radius:12px;padding:16px;border-left:4px solid}
 .card.c-rec{border-color:#22c55e}.card.c-gas{border-color:#ef4444}
@@ -263,6 +283,36 @@ footer{text-align:center;color:#334155;font-size:.7rem;margin-top:20px;
 <h1>💰 Finanças Igor &amp; Nath</h1>
 <p class="subtitle">Atualizado: __UPDATED__</p>
 <div class="month-bar">__MONTH_BUTTONS__</div>
+
+<div class="filter-bar">
+  <div class="fg-row">
+    <span class="fg-label">Categorias</span>
+    <button class="chip" data-grp="cats" data-val="Alimentação"  onclick="toggleFilt(this)">Alimentação</button>
+    <button class="chip" data-grp="cats" data-val="Transporte"   onclick="toggleFilt(this)">Transporte</button>
+    <button class="chip" data-grp="cats" data-val="Saúde"        onclick="toggleFilt(this)">Saúde</button>
+    <button class="chip" data-grp="cats" data-val="Pet"          onclick="toggleFilt(this)">Pet</button>
+    <button class="chip" data-grp="cats" data-val="Vestuário"    onclick="toggleFilt(this)">Vestuário</button>
+    <button class="chip" data-grp="cats" data-val="Casa"         onclick="toggleFilt(this)">Casa</button>
+    <button class="chip" data-grp="cats" data-val="Lazer"        onclick="toggleFilt(this)">Lazer</button>
+    <button class="chip" data-grp="cats" data-val="Eletrônicos"  onclick="toggleFilt(this)">Eletrônicos</button>
+    <button class="chip" data-grp="cats" data-val="Serviços"     onclick="toggleFilt(this)">Serviços</button>
+    <button class="chip" data-grp="cats" data-val="Outros"       onclick="toggleFilt(this)">Outros</button>
+  </div>
+  <div class="fg-row">
+    <span class="fg-label">Cartões</span>
+    <button class="chip" data-grp="cards" data-val="inter"       onclick="toggleFilt(this)">Inter</button>
+    <button class="chip" data-grp="cards" data-val="itau"        onclick="toggleFilt(this)">Itaú</button>
+    <button class="chip" data-grp="cards" data-val="nubank"      onclick="toggleFilt(this)">Nubank Igor</button>
+    <button class="chip" data-grp="cards" data-val="caixa"       onclick="toggleFilt(this)">Caixa</button>
+    <button class="chip" data-grp="cards" data-val="nubank_nath" onclick="toggleFilt(this)">Nubank Nath</button>
+    <span class="fg-label" style="margin-left:10px">Status</span>
+    <button class="chip chip-pago" data-grp="status" data-val="pago"     onclick="toggleFilt(this)">Pago</button>
+    <button class="chip chip-nao"  data-grp="status" data-val="nao_pago" onclick="toggleFilt(this)">Não Pago</button>
+    <button class="chip chip-clear" onclick="clearFilts()">✕ Limpar filtros</button>
+  </div>
+</div>
+
+<button class="refresh-btn" onclick="location.reload()" title="Atualizar dados">↻</button>
 
 <div class="cards">
   <div class="card c-rec"><h3>Receita Total</h3><div class="val" id="v-rec">—</div></div>
@@ -314,8 +364,16 @@ const CC     = __CAT_COLORS__;
 const ORDER  = __MONTH_ORDER__;
 let CH = {};
 const CANVAS_IDS = ['cBar','cCat','cPizza','cCartoes'];
+const CARD_KEYS  = ['inter','itau','nubank','caixa','nubank_nath'];
+const CARD_TITLES= {
+  inter:'💳 Cartão Inter', itau:'💳 Cartão Itaú',
+  nubank:'💳 Nubank Igor', caixa:'💳 Cartão Caixa', nubank_nath:'💳 Nubank Nath'
+};
 
-const fmt = v => 'R$\u00a0' + Math.abs(+v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+let FILT = {cats:new Set(), cards:new Set(), status:new Set()};
+let CURR_DATA = null;
+
+const fmt  = v => 'R$\u00a0'+Math.abs(+v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
 const fmtS = v => (v<0?'\u2212':'')+fmt(v);
 const brl  = v => 'R$\u00a0'+Math.round(Math.abs(+v||0)).toLocaleString('pt-BR');
 
@@ -326,33 +384,55 @@ function badge(s){
 function catBadge(c){
   return `<span class="cat" style="background:${CC[c]||'#475569'}">${c}</span>`;
 }
-function getCatTotals(d){
-  const t={};
-  const all=[...(d.inter||[]),...(d.itau||[]),...(d.nubank||[]),...(d.caixa||[]),...(d.nubank_nath||[])];
-  all.forEach(x=>{ t[x.cat]=(t[x.cat]||0)+x.val; });
-  return t;
+
+function toggleFilt(el){
+  const grp=el.dataset.grp, val=el.dataset.val;
+  if(FILT[grp].has(val)){ FILT[grp].delete(val); el.classList.remove('active'); }
+  else { FILT[grp].add(val); el.classList.add('active'); }
+  applyFilters();
 }
 
-// Destrói charts e recria os canvas do zero (evita bug de reuso do Chart.js)
+function clearFilts(){
+  FILT={cats:new Set(), cards:new Set(), status:new Set()};
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  applyFilters();
+}
+
+function filteredCards(d){
+  const activeCards=FILT.cards.size>0?FILT.cards:new Set(CARD_KEYS);
+  const activeCats =FILT.cats.size>0 ?FILT.cats :null;
+  const fc={};
+  CARD_KEYS.forEach(k=>{
+    if(!activeCards.has(k)){ fc[k]=[]; return; }
+    fc[k]=(d[k]||[]).filter(x=>!activeCats||activeCats.has(x.cat));
+  });
+  return fc;
+}
+
+function filteredStatus(items){
+  if(FILT.status.size===0) return items||[];
+  return (items||[]).filter(x=>{
+    const isPago=!(/n[ãa]o/i.test(x.status||''));
+    return (FILT.status.has('pago')&&isPago)||(FILT.status.has('nao_pago')&&!isPago);
+  });
+}
+
 function dc(){
   Object.values(CH).forEach(c=>{try{c.destroy();}catch{}});
   CH={};
   CANVAS_IDS.forEach(id=>{
     const old=document.getElementById(id);
-    if(old){
-      const n=document.createElement('canvas');
-      n.id=id;
-      old.parentNode.replaceChild(n,old);
-    }
+    if(old){ const n=document.createElement('canvas'); n.id=id; old.parentNode.replaceChild(n,old); }
   });
 }
 
-function mkCharts(d){
+function mkCharts(d, fc){
   dc();
   const tc='#94a3b8', gc='#1e293b';
-  const yScale = {ticks:{color:tc,callback:brl},grid:{color:'#334155'}};
-  const xScale = {ticks:{color:tc},grid:{color:gc}};
+  const yScale={ticks:{color:tc,callback:brl},grid:{color:'#334155'}};
+  const xScale={ticks:{color:tc},grid:{color:gc}};
 
+  // Receita vs Gastos — totais originais do mês
   CH.bar=new Chart(document.getElementById('cBar'),{type:'bar',data:{
     labels:['Receita','Gastos','Saldo'],
     datasets:[{data:[d.total_receitas,d.total_gastos,d.saldo],borderRadius:6,
@@ -361,7 +441,9 @@ function mkCharts(d){
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false}},scales:{x:xScale,y:yScale}}});
 
-  const ct=getCatTotals(d);
+  // Categorias — usa items filtrados
+  const ct={};
+  CARD_KEYS.forEach(k=>{ (fc[k]||[]).forEach(x=>{ ct[x.cat]=(ct[x.cat]||0)+x.val; }); });
   const ck=Object.keys(ct).filter(k=>ct[k]>0).sort((a,b)=>ct[b]-ct[a]);
   if(ck.length){
     CH.cat=new Chart(document.getElementById('cCat'),{type:'doughnut',data:{
@@ -370,22 +452,22 @@ function mkCharts(d){
         plugins:{legend:{position:'right',labels:{color:tc,font:{size:10},boxWidth:10,padding:6}}}}});
   }
 
-  const gl=(d.gastos||[]).filter(g=>g.val>0);
+  // Gastos fixos — filtro de status
+  const gl=filteredStatus(d.gastos||[]).filter(g=>g.val>0);
   const COLS=['#6366f1','#ef4444','#8b5cf6','#ec4899','#f59e0b','#14b8a6','#22c55e','#3b82f6','#f97316','#94a3b8'];
   if(gl.length){
     CH.piz=new Chart(document.getElementById('cPizza'),{type:'doughnut',data:{
-      labels:gl.map(g=>g.desc),
-      datasets:[{data:gl.map(g=>g.val),backgroundColor:COLS,borderWidth:0}]},
+      labels:gl.map(g=>g.desc),datasets:[{data:gl.map(g=>g.val),backgroundColor:COLS,borderWidth:0}]},
       options:{responsive:true,maintainAspectRatio:false,
         plugins:{legend:{position:'right',labels:{color:tc,font:{size:10},boxWidth:10,padding:6}}}}});
   }
 
-  const cartLabels=['Inter','Itaú','Nubank','Caixa','Nubank Nath'];
-  const cartVals=[d.total_inter,d.total_itau,d.total_nubank,d.total_caixa,d.total_nubank_nath];
+  // Faturas — totais dos items filtrados
+  const cartVals=CARD_KEYS.map(k=>(fc[k]||[]).reduce((s,x)=>s+x.val,0));
   const cartColors=['#f59e0b88','#6366f188','#a855f788','#22c55e88','#ec489988'];
   const cartBorder=['#f59e0b','#6366f1','#a855f7','#22c55e','#ec4899'];
   CH.car=new Chart(document.getElementById('cCartoes'),{type:'bar',data:{
-    labels:cartLabels,
+    labels:['Inter','Itaú','Nubank Igor','Caixa','Nubank Nath'],
     datasets:[{data:cartVals,backgroundColor:cartColors,borderColor:cartBorder,borderWidth:2,borderRadius:6}]},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false}},scales:{x:xScale,y:yScale}}});
@@ -401,71 +483,63 @@ function mkItems(items){
 }
 
 function setNoData(msg){
-  dc(); // limpa e recria canvases
+  dc();
+  CURR_DATA=null;
   ['tbody-gastos','tbody-receitas','tbody-trans'].forEach(id=>{
-    document.getElementById(id).innerHTML=
-      `<tr><td colspan="5" class="no-data">${msg}</td></tr>`;
+    document.getElementById(id).innerHTML=`<tr><td colspan="5" class="no-data">${msg}</td></tr>`;
   });
   document.getElementById('cartao-grid').innerHTML=
     `<div style="grid-column:1/-1;text-align:center;color:#475569;padding:30px">${msg}</div>`;
-  ['v-rec','v-gas','v-sal','v-pag','v-prec'].forEach(id=>{
-    document.getElementById(id).textContent='—';
-  });
+  ['v-rec','v-gas','v-sal','v-pag','v-prec'].forEach(id=>{ document.getElementById(id).textContent='—'; });
   document.getElementById('card-saldo').className='card c-pos';
 }
 
-function render(d){
-  if(!d){
-    setNoData('Sem dados para este mês ainda.');
-    return;
-  }
-  // Mês com dados mas todos zerados
-  if(d.total_gastos===0 && d.total_receitas===0){
-    setNoData('Este mês ainda não tem dados preenchidos na planilha.');
-    return;
-  }
+function applyFilters(){
+  if(!CURR_DATA) return;
+  const d=CURR_DATA;
+  const fc=filteredCards(d);
+  mkCharts(d, fc);
 
-  // Cards de resumo
+  // Boxes dos cartões
+  const activeCards=FILT.cards.size>0?FILT.cards:new Set(CARD_KEYS);
+  document.getElementById('cartao-grid').innerHTML=CARD_KEYS
+    .map(k=>({key:k,title:CARD_TITLES[k],items:fc[k],total:fc[k].reduce((s,x)=>s+x.val,0)}))
+    .filter(c=>activeCards.has(c.key)&&(c.items.length>0||c.total>0))
+    .map(c=>`<div class="cartao-box"><h2>${c.title}</h2>${mkItems(c.items)}
+      <div class="ctotal">Total fatura: ${fmt(c.total)}</div></div>`).join('');
+
+  // Tabela gastos (filtro status)
+  const fg=filteredStatus(d.gastos||[]);
+  document.getElementById('tbody-gastos').innerHTML=fg.map(r=>
+    `<tr><td>${r.desc}</td><td>${r.val_str}</td><td>${r.data||'—'}</td><td>${r.obs||'—'}</td><td>${badge(r.status)}</td></tr>`
+  ).join('')||'<tr><td colspan="5" class="no-data">Sem gastos.</td></tr>';
+
+  // Tabela receitas (filtro status)
+  const fr=filteredStatus(d.receitas||[]);
+  document.getElementById('tbody-receitas').innerHTML=fr.map(r=>
+    `<tr><td>${r.desc}</td><td>${r.val_str}</td><td>${r.data||'—'}</td><td>${badge(r.status)}</td></tr>`
+  ).join('')||'<tr><td colspan="4" class="no-data">Sem receitas.</td></tr>';
+
+  // Tabela transações Inter (filtro categoria)
+  const trans=fc.inter.filter(x=>x.date);
+  document.getElementById('tbody-trans').innerHTML=trans.map(r=>
+    `<tr><td>${r.date}</td><td>${r.desc}</td><td>${fmt(r.val)}</td><td>${r.parc||'—'}</td><td>${catBadge(r.cat)}</td></tr>`
+  ).join('')||'<tr><td colspan="5" class="no-data">Sem transações detalhadas.</td></tr>';
+}
+
+function render(d){
+  if(!d){ setNoData('Sem dados para este mês ainda.'); return; }
+  if(d.total_gastos===0&&d.total_receitas===0){
+    setNoData('Este mês ainda não tem dados preenchidos na planilha.'); return;
+  }
+  CURR_DATA=d;
   document.getElementById('v-rec').textContent  = fmt(d.total_receitas);
   document.getElementById('v-gas').textContent  = fmt(d.total_gastos);
   document.getElementById('v-sal').textContent  = fmtS(d.saldo);
   document.getElementById('v-pag').textContent  = fmt(d.para_pagar);
   document.getElementById('v-prec').textContent = fmt(d.para_receber);
-  const cs = document.getElementById('card-saldo');
-  cs.className = 'card '+(d.saldo>=0?'c-pos':'c-neg');
-
-  // Gráficos
-  mkCharts(d);
-
-  // Boxes dos cartões
-  document.getElementById('cartao-grid').innerHTML = [
-    {title:'💳 Cartão Inter', items:d.inter,      total:d.total_inter},
-    {title:'💳 Cartão Itaú',  items:d.itau,       total:d.total_itau},
-    {title:'💳 Nubank Igor',  items:d.nubank,      total:d.total_nubank},
-    {title:'💳 Cartão Caixa', items:d.caixa,       total:d.total_caixa},
-    {title:'💳 Nubank Nath',  items:d.nubank_nath, total:d.total_nubank_nath},
-  ].filter(c=>c.items&&(c.items.length>0||c.total>0)).map(c=>`
-    <div class="cartao-box">
-      <h2>${c.title}</h2>
-      ${mkItems(c.items)}
-      <div class="ctotal">Total fatura: ${fmt(c.total)}</div>
-    </div>`).join('');
-
-  // Tabela gastos
-  document.getElementById('tbody-gastos').innerHTML=(d.gastos||[]).map(r=>
-    `<tr><td>${r.desc}</td><td>${r.val_str}</td><td>${r.data||'—'}</td><td>${r.obs||'—'}</td><td>${badge(r.status)}</td></tr>`
-  ).join('') || '<tr><td colspan="5" class="no-data">Sem gastos.</td></tr>';
-
-  // Tabela receitas
-  document.getElementById('tbody-receitas').innerHTML=(d.receitas||[]).map(r=>
-    `<tr><td>${r.desc}</td><td>${r.val_str}</td><td>${r.data||'—'}</td><td>${badge(r.status)}</td></tr>`
-  ).join('') || '<tr><td colspan="4" class="no-data">Sem receitas.</td></tr>';
-
-  // Tabela transações Inter com data
-  const trans=(d.inter||[]).filter(x=>x.date);
-  document.getElementById('tbody-trans').innerHTML=trans.map(r=>
-    `<tr><td>${r.date}</td><td>${r.desc}</td><td>${fmt(r.val)}</td><td>${r.parc||'—'}</td><td>${catBadge(r.cat)}</td></tr>`
-  ).join('') || '<tr><td colspan="5" class="no-data">Sem transações detalhadas.</td></tr>';
+  document.getElementById('card-saldo').className='card '+(d.saldo>=0?'c-pos':'c-neg');
+  applyFilters();
 }
 
 function switchMonth(m){
@@ -473,9 +547,8 @@ function switchMonth(m){
   render(DATA[m]);
 }
 
-// Abre no mês mais recente com dados
-const firstWithData = ORDER.find(m=>DATA[m]&&(DATA[m].total_gastos>0||DATA[m].total_receitas>0))
-  || ORDER.find(m=>DATA[m]) || ORDER[0];
+const firstWithData=ORDER.find(m=>DATA[m]&&(DATA[m].total_gastos>0||DATA[m].total_receitas>0))
+  ||ORDER.find(m=>DATA[m])||ORDER[0];
 switchMonth(firstWithData);
 </script>
 </body>

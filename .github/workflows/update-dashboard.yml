@@ -1,0 +1,32 @@
+name: Atualizar Dashboard
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'   # A cada 4 horas
+  workflow_dispatch:          # Permite rodar manualmente no GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Gerar dashboard
+        run: python generate_dashboard.py
+
+      - name: Commit e push
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add dashboard.html
+          git diff --staged --quiet || git commit -m "Auto-update dashboard $(date -u '+%d/%m/%Y %H:%M UTC')"
+          git push

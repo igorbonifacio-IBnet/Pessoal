@@ -345,7 +345,25 @@ function switchMonth(m){
 
 const firstWithData=ORDER.find(m=>DATA[m]&&(DATA[m].total_gastos>0||DATA[m].total_receitas>0))
   ||ORDER.find(m=>DATA[m])||ORDER[0];
-switchMonth(firstWithData);
+
+fetch('data/wpp_transactions.json?t='+Date.now())
+  .then(r=>r.ok?r.json():{})
+  .then(wpp=>{
+    Object.keys(wpp).forEach(mes=>{
+      if(!DATA[mes])DATA[mes]={gastos:[],receitas:[],inter:[],itau:[],nubank:[],caixa:[],nubank_nath:[],total_gastos:0,total_receitas:0,para_pagar:0,para_receber:0,saldo:0,total_inter:0,total_itau:0,total_nubank:0,total_caixa:0,total_nubank_nath:0};
+      ['gastos','receitas','inter','itau','nubank','caixa','nubank_nath'].forEach(k=>{
+        if(wpp[mes][k]&&wpp[mes][k].length)DATA[mes][k]=[...(DATA[mes][k]||[]),...wpp[mes][k]];
+      });
+      DATA[mes].total_gastos=DATA[mes].gastos.reduce((s,x)=>s+x.val,0);
+      DATA[mes].total_receitas=DATA[mes].receitas.reduce((s,x)=>s+x.val,0);
+      DATA[mes].para_pagar=DATA[mes].gastos.filter(x=>x.status!=='Pago').reduce((s,x)=>s+x.val,0);
+      DATA[mes].para_receber=DATA[mes].receitas.filter(x=>x.status!=='Recebido').reduce((s,x)=>s+x.val,0);
+      DATA[mes].saldo=DATA[mes].total_receitas-DATA[mes].total_gastos;
+      ['inter','itau','nubank','caixa','nubank_nath'].forEach(k=>{DATA[mes]['total_'+k]=(DATA[mes][k]||[]).reduce((s,x)=>s+x.val,0);});
+    });
+    switchMonth(firstWithData);
+  })
+  .catch(()=>switchMonth(firstWithData));
 </script>
 </body>
 </html>

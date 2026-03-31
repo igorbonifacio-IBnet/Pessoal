@@ -1,32 +1,18 @@
 #!/usr/bin/env python3
-"""Gera dashboard.html — Finanças Igor & Nath"""
+"""Gera dashboard.html — Finanças Igor & Nath (lê de data/wpp_transactions.json)"""
 
-import csv, io, json, urllib.request, urllib.parse
+import json
 from datetime import datetime, timezone
+from pathlib import Path
 
-SHEET_ID = '1xOB9bCLSkGPsZbXPHOuZFnA8_KKXMS6sbrrIsHCRak0'
+DATA_FILE = Path('data/wpp_transactions.json')
 
-# GIDs reais de cada aba (mais confiável que usar nome)
-SHEET_GIDS = {
-    'MARÇO':      '1903168850',
-    'ABRIL':      '1027024051',
-    'MAIO':       '1609442091',
-    'JUNHO':      '133954216',
-    'JULHO':      '1229137310',
-    'AGOSTO':     '1524000498',
-    'SETEMBRO':   '1389769078',
-    'OUTUBRO':    '148537219',
-    'NOVEMBRO':   '2013967425',
-    'DEZEMBRO26': '23317820',
-}
-
-MONTH_SHEETS = list(SHEET_GIDS.keys())
+MONTH_SHEETS = ['MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO','SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO26']
 MONTH_LABELS = {
     'MARÇO':'Mar/26','ABRIL':'Abr/26','MAIO':'Mai/26','JUNHO':'Jun/26','JULHO':'Jul/26',
     'AGOSTO':'Ago/26','SETEMBRO':'Set/26','OUTUBRO':'Out/26','NOVEMBRO':'Nov/26','DEZEMBRO26':'Dez/26'
 }
 
-# ── Categorias ──────────────────────────────────────────────────────────────
 CAT_KW = {
     'Alimentação': ['atacadão','bretas','assaí','banana','carne','mc donalds','mc donald',
                     'pizzaria','almoço','espetinho','padoca','panif','armazem','pamonharia',
@@ -60,146 +46,104 @@ def cat(desc):
         if any(kw in dl for kw in kws): return c
     return 'Outros'
 
-def fetch_csv(sheet_name):
-    gid = SHEET_GIDS[sheet_name]
-    url = (f'https://docs.google.com/spreadsheets/d/{SHEET_ID}'
-           f'/export?format=csv&gid={gid}')
-    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-    try:
-        with urllib.request.urlopen(req, timeout=30) as r:
-            raw = r.read()
-            return raw.decode('utf-8-sig')
-    except Exception as e:
-        print(f'  Aviso: não carregou {sheet_name} (gid={gid}): {e}')
-        return None
-
 def pc(v):
-    """Converte valor monetário BR (R$ 1.234,56) para float."""
     if not v: return 0.0
     s = str(v).strip().replace('R$','').replace('\xa0','').strip()
     if ',' in s:
-        # formato BR: 1.234,56 → remove pontos → 1234,56 → troca vírgula → 1234.56
         s = s.replace('.', '').replace(',', '.')
     else:
-        # sem vírgula: pode ser inteiro ou formato com ponto decimal
         parts = s.split('.')
         if len(parts) > 2:
             s = ''.join(parts[:-1]) + '.' + parts[-1]
     try: return round(float(s), 2)
     except: return 0.0
 
-def is_card_header(s):
-    """Ignora linhas de cabeçalho das colunas de cartão."""
-    sl = s.lower()
-    return (not s or sl in {'valor','total','descrição','data','parcela'} or
-            sl.startswith('fatura ') or sl.startswith('cartão '))
+def load_json_data():
+    """Carrega dados do wpp_transactions.json e normaliza para o formato do dashboard."""
+    if not DATA_FILE.exists():
+        print(f'Aviso: {DATA_FILE} não encontrado. Criando estrutura vazia.')
+        return {}
 
-def extract(text):
-    if not text: return None
-    rows = list(csv.reader(io.StringIO(text)))
+    with open(DATA_FILE, encoding='utf-8') as f:
+        raw = json.load(f)
 
-    d = {
-        'gastos':[], 'receitas':[],
-        'inter':[], 'itau':[], 'nubank':[], 'caixa':[], 'nubank_nath':[],
-        'total_gastos':0,'total_receitas':0,
-        'para_pagar':0,'para_receber':0,'saldo':0,
-        'total_inter':0,'total_itau':0,'total_nubank':0,'total_caixa':0,'total_nubank_nath':0,
-    }
+    all_data = {}
+    for month in MONTH_SHEETS:
+        md = raw.get(month)
+        if not md:
+            all_data[month] = None
+            continue
 
-    def g(r, i): return r[i].strip() if len(r) > i else ''
-
-    sec = None
-
-    for row in rows:
-        # ── Dados principais estão na coluna 1 (há 1 coluna vazia no início) ──
-        c1 = g(row, 1)   # descrição / header de seção
-        c2 = g(row, 2)   # valor
-        c3 = g(row, 3)   # data
-        c4 = g(row, 4)   # observação
-        c5 = g(row, 5)   # status
-
-        # ── Detecção de seção ──
-        if c1 == 'GASTOS MENSAIS':  sec = 'g'; continue
-        if c1 == 'RECEITA MENSAL':  sec = 'r'; continue
-        if c1 in ('DESCRIÇÃO', ''): continue
-
-        # ── PARA PAGAR / RECEBER (sem header de seção) ──
-        if c1 == 'PARA PAGAR':   d['para_pagar']   = pc(c2); sec = 's'; continue
-        if c1 == 'PARA RECEBER': d['para_receber']  = pc(c2); continue
-
-        # ── Cartões: parseados apenas dentro da seção de gastos ──
-        if sec == 'g':
-            # Inter — cols 7(date), 8(desc), 9(val), 10(parc)
-            di, dsc, vi, pi = g(row,7), g(row,8), g(row,9), g(row,10)
-            if dsc and not is_card_header(dsc):
-                v = pc(vi)
-                if v > 0:
-                    item = {'desc':dsc,'val':v,'parc':pi,'cat':cat(dsc)}
-                    if di: item['date'] = di
-                    d['inter'].append(item)
-            if g(row,8).lower() == 'total' and g(row,9):
-                d['total_inter'] = pc(g(row,9))
-
-            # Itaú — cols 12(date), 13(desc), 14(val), 15(parc)
-            di2, dsc2, vi2, pi2 = g(row,12), g(row,13), g(row,14), g(row,15)
-            if dsc2 and not is_card_header(dsc2):
-                v = pc(vi2)
-                if v > 0:
-                    item = {'desc':dsc2,'val':v,'parc':pi2,'cat':cat(dsc2)}
-                    if di2: item['date'] = di2
-                    d['itau'].append(item)
-            if g(row,13).lower() == 'total' and g(row,14):
-                d['total_itau'] = pc(g(row,14))
-
-            # Nubank Igor — cols 17(desc), 18(val), 19(parc)
-            nd, nv, np = g(row,17), g(row,18), g(row,19)
-            if nd.lower() == 'total' and nv:
-                d['total_nubank'] = pc(nv)
-            elif nd and not is_card_header(nd):
-                v = pc(nv)
-                if v > 0: d['nubank'].append({'desc':nd,'val':v,'parc':np,'cat':cat(nd)})
-
-            # Caixa — cols 21(desc), 22(val), 23(parc)
-            cd, cv, cp = g(row,21), g(row,22), g(row,23)
-            if cd.lower() == 'total' and cv:
-                d['total_caixa'] = pc(cv)
-            elif cd and not is_card_header(cd):
-                v = pc(cv)
-                if v > 0: d['caixa'].append({'desc':cd,'val':v,'parc':cp,'cat':cat(cd)})
-
-            # Nubank Nath — cols 25(desc), 26(val), 27(parc)
-            nn, nnn, pnn = g(row,25), g(row,26), g(row,27)
-            if nn.lower() == 'total' and nnn:
-                d['total_nubank_nath'] = pc(nnn)
-            elif nn and not is_card_header(nn):
-                v = pc(nnn)
-                if v > 0: d['nubank_nath'].append({'desc':nn,'val':v,'parc':pnn,'cat':cat(nn)})
+        d = {
+            'gastos': [], 'receitas': [],
+            'inter': [], 'itau': [], 'nubank': [], 'caixa': [], 'nubank_nath': [],
+            'total_gastos': 0, 'total_receitas': 0,
+            'para_pagar': 0, 'para_receber': 0, 'saldo': 0,
+            'total_inter': 0, 'total_itau': 0, 'total_nubank': 0,
+            'total_caixa': 0, 'total_nubank_nath': 0,
+            'comprovantes': [],
+        }
 
         # ── Gastos fixos ──
-        if sec == 'g':
-            if c1 == 'TOTAL' and c2:
-                d['total_gastos'] = pc(c2)
-            elif c1:
-                d['gastos'].append({'desc':c1,'val_str':c2,'val':pc(c2),
-                                    'data':c3,'obs':c4,'status':c5})
-        elif sec == 'r':
-            if c1 == 'TOTAL' and c2:
-                d['total_receitas'] = pc(c2)
-            elif c1:
-                d['receitas'].append({'desc':c1,'val_str':c2,'val':pc(c2),
-                                      'data':c3,'status':c5})
-        elif sec == 's':
-            if c1 == 'TOTAL' and c2:
-                d['saldo'] = pc(c2)
+        for item in md.get('gastos', []):
+            val = pc(item.get('val', item.get('val_str', 0)))
+            d['gastos'].append({
+                'desc': item.get('desc', ''),
+                'val_str': item.get('val_str', f"R$ {val:.2f}".replace('.', ',')),
+                'val': val,
+                'data': item.get('data', ''),
+                'obs': item.get('obs', item.get('notes', '')),
+                'status': item.get('status', ''),
+            })
 
-    # Fallback: totais dos cartões pela soma dos itens
-    if d['total_inter']      == 0: d['total_inter']      = round(sum(x['val'] for x in d['inter']),2)
-    if d['total_itau']       == 0: d['total_itau']       = round(sum(x['val'] for x in d['itau']),2)
-    if d['total_nubank']     == 0: d['total_nubank']     = round(sum(x['val'] for x in d['nubank']),2)
-    if d['total_caixa']      == 0: d['total_caixa']      = round(sum(x['val'] for x in d['caixa']),2)
-    if d['total_nubank_nath'] == 0: d['total_nubank_nath'] = round(sum(x['val'] for x in d['nubank_nath']),2)
+        # ── Receitas ──
+        for item in md.get('receitas', []):
+            val = pc(item.get('val', item.get('val_str', 0)))
+            d['receitas'].append({
+                'desc': item.get('desc', ''),
+                'val_str': item.get('val_str', f"R$ {val:.2f}".replace('.', ',')),
+                'val': val,
+                'data': item.get('data', ''),
+                'status': item.get('status', ''),
+            })
 
-    return d
+        # ── Cartões ──
+        card_map = {'inter': 'inter', 'itau': 'itau', 'nubank_igor': 'nubank',
+                    'nubank': 'nubank', 'caixa': 'caixa', 'nubank_nath': 'nubank_nath'}
+        for src_key, dst_key in card_map.items():
+            for item in md.get(src_key, []):
+                val = pc(item.get('val', item.get('val_str', 0)))
+                if val > 0:
+                    entry = {
+                        'desc': item.get('desc', ''),
+                        'val': val,
+                        'parc': item.get('parc', item.get('parcela', '')),
+                        'cat': item.get('cat', cat(item.get('desc', ''))),
+                    }
+                    if item.get('date') or item.get('data'):
+                        entry['date'] = item.get('date', item.get('data', ''))
+                    if item.get('comprovante_url'):
+                        entry['comprovante_url'] = item['comprovante_url']
+                    d[dst_key].append(entry)
+
+        # ── Totais ──
+        d['total_gastos']      = pc(md.get('total_gastos', 0)) or round(sum(g['val'] for g in d['gastos']), 2)
+        d['total_receitas']    = pc(md.get('total_receitas', 0)) or round(sum(r['val'] for r in d['receitas']), 2)
+        d['para_pagar']        = pc(md.get('para_pagar', 0))
+        d['para_receber']      = pc(md.get('para_receber', 0))
+        d['saldo']             = pc(md.get('saldo', 0)) or round(d['total_receitas'] - d['total_gastos'], 2)
+        d['total_inter']       = pc(md.get('total_inter', 0)) or round(sum(x['val'] for x in d['inter']), 2)
+        d['total_itau']        = pc(md.get('total_itau', 0)) or round(sum(x['val'] for x in d['itau']), 2)
+        d['total_nubank']      = pc(md.get('total_nubank', 0)) or round(sum(x['val'] for x in d['nubank']), 2)
+        d['total_caixa']       = pc(md.get('total_caixa', 0)) or round(sum(x['val'] for x in d['caixa']), 2)
+        d['total_nubank_nath'] = pc(md.get('total_nubank_nath', 0)) or round(sum(x['val'] for x in d['nubank_nath']), 2)
+
+        # ── Comprovantes ──
+        d['comprovantes'] = md.get('comprovantes', [])
+
+        all_data[month] = d
+
+    return all_data
 
 # ─────────────────────────── HTML TEMPLATE ────────────────────────────────────
 HTML = r"""<!DOCTYPE html>
@@ -219,6 +163,14 @@ h1{text-align:center;font-size:1.7rem;color:#f8fafc;margin-bottom:6px}
   color:#94a3b8;cursor:pointer;font-size:.82rem;font-weight:500;transition:all .15s}
 .month-btn:hover{border-color:#3b82f6;color:#93c5fd}
 .month-btn.active{background:#3b82f6;border-color:#3b82f6;color:#fff;font-weight:700}
+/* ── Tab bar ── */
+.tab-bar{display:flex;gap:4px;margin-bottom:20px;border-bottom:2px solid #1e293b}
+.tab-btn{padding:10px 20px;border:none;background:transparent;color:#64748b;
+  cursor:pointer;font-size:.85rem;font-weight:500;border-bottom:2px solid transparent;
+  margin-bottom:-2px;transition:all .15s}
+.tab-btn:hover{color:#cbd5e1}
+.tab-btn.active{color:#3b82f6;border-bottom-color:#3b82f6;font-weight:700}
+.tab-panel{display:none}.tab-panel.active{display:block}
 /* ── Filter bar ── */
 .filter-bar{background:#1e293b;border-radius:12px;padding:14px 16px;margin-bottom:20px;
   display:flex;flex-direction:column;gap:10px}
@@ -233,7 +185,7 @@ h1{text-align:center;font-size:1.7rem;color:#f8fafc;margin-bottom:6px}
 .chip-clear:hover{border-color:#ef4444;color:#fca5a5}
 .chip-pago.active{background:#22c55e;border-color:#22c55e}
 .chip-nao.active{background:#ef4444;border-color:#ef4444}
-/* ── Refresh button (fixed) ── */
+/* ── Refresh button ── */
 .refresh-btn{position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;
   background:#3b82f6;border:none;color:#fff;font-size:1.4rem;cursor:pointer;
   box-shadow:0 4px 14px #0008;transition:background .2s,transform .3s;z-index:999;line-height:1}
@@ -275,6 +227,22 @@ tr:hover td{background:#ffffff07}
 .ci small{color:#64748b;font-size:.7rem}
 .ctotal{margin-top:10px;text-align:right;font-size:.85rem;color:#ef4444;font-weight:700}
 .no-data{color:#475569;text-align:center;padding:30px;font-size:.9rem}
+/* ── Comprovantes ── */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;padding:4px 0}
+.comp-card{background:#1e293b;border-radius:12px;overflow:hidden;transition:transform .15s}
+.comp-card:hover{transform:translateY(-2px)}
+.comp-thumb{width:100%;height:150px;object-fit:cover;background:#0f172a;display:block}
+.comp-thumb-placeholder{width:100%;height:150px;background:#0f172a;display:flex;
+  align-items:center;justify-content:center;font-size:2rem;color:#334155}
+.comp-info{padding:10px 12px}
+.comp-desc{font-size:.82rem;color:#e2e8f0;font-weight:600;margin-bottom:4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.comp-meta{font-size:.72rem;color:#64748b;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.comp-val{color:#ef4444;font-weight:700}
+.comp-card a{color:#3b82f6;font-size:.72rem;text-decoration:none}
+.comp-card a:hover{text-decoration:underline}
+.comp-empty{text-align:center;padding:60px 20px;color:#475569}
+.comp-empty .icon{font-size:3rem;margin-bottom:12px}
 footer{text-align:center;color:#334155;font-size:.7rem;margin-top:20px;
        padding-top:10px;border-top:1px solid #1e293b}
 </style>
@@ -283,6 +251,14 @@ footer{text-align:center;color:#334155;font-size:.7rem;margin-top:20px;
 <h1>💰 Finanças Igor &amp; Nath</h1>
 <p class="subtitle">Atualizado: __UPDATED__</p>
 <div class="month-bar">__MONTH_BUTTONS__</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('visao-geral',this)">Visão Geral</button>
+  <button class="tab-btn" onclick="switchTab('comprovantes',this)">Comprovantes</button>
+</div>
+
+<!-- ══════════ TAB: VISÃO GERAL ══════════ -->
+<div id="tab-visao-geral" class="tab-panel active">
 
 <div class="filter-bar">
   <div class="fg-row">
@@ -355,7 +331,17 @@ footer{text-align:center;color:#334155;font-size:.7rem;margin-top:20px;
   </table></div>
 </div>
 
-<footer>Dashboard Financeiro · Igor &amp; Nath · Dados sincronizados do Google Sheets</footer>
+</div><!-- end tab visao-geral -->
+
+<!-- ══════════ TAB: COMPROVANTES ══════════ -->
+<div id="tab-comprovantes" class="tab-panel">
+  <div class="box" style="margin-bottom:18px">
+    <h2>Comprovantes e Anexos</h2>
+    <div id="comp-container"></div>
+  </div>
+</div>
+
+<footer>Dashboard Financeiro · Igor &amp; Nath · Alimentado via WhatsApp</footer>
 
 <script>
 const DATA   = __DATA__;
@@ -372,6 +358,7 @@ const CARD_TITLES= {
 
 let FILT = {cats:new Set(), cards:new Set(), status:new Set()};
 let CURR_DATA = null;
+let CURR_MONTH = null;
 
 const fmt  = v => 'R$\u00a0'+Math.abs(+v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
 const fmtS = v => (v<0?'\u2212':'')+fmt(v);
@@ -383,6 +370,14 @@ function badge(s){
 }
 function catBadge(c){
   return `<span class="cat" style="background:${CC[c]||'#475569'}">${c}</span>`;
+}
+
+function switchTab(id, el){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+  if(id==='comprovantes') renderComprovantes(CURR_DATA);
 }
 
 function toggleFilt(el){
@@ -432,7 +427,6 @@ function mkCharts(d, fc){
   const yScale={ticks:{color:tc,callback:brl},grid:{color:'#334155'}};
   const xScale={ticks:{color:tc},grid:{color:gc}};
 
-  // Receita vs Gastos — totais originais do mês
   CH.bar=new Chart(document.getElementById('cBar'),{type:'bar',data:{
     labels:['Receita','Gastos','Saldo'],
     datasets:[{data:[d.total_receitas,d.total_gastos,d.saldo],borderRadius:6,
@@ -441,7 +435,6 @@ function mkCharts(d, fc){
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false}},scales:{x:xScale,y:yScale}}});
 
-  // Categorias — usa items filtrados
   const ct={};
   CARD_KEYS.forEach(k=>{ (fc[k]||[]).forEach(x=>{ ct[x.cat]=(ct[x.cat]||0)+x.val; }); });
   const ck=Object.keys(ct).filter(k=>ct[k]>0).sort((a,b)=>ct[b]-ct[a]);
@@ -452,7 +445,6 @@ function mkCharts(d, fc){
         plugins:{legend:{position:'right',labels:{color:tc,font:{size:10},boxWidth:10,padding:6}}}}});
   }
 
-  // Gastos fixos — filtro de status
   const gl=filteredStatus(d.gastos||[]).filter(g=>g.val>0);
   const COLS=['#6366f1','#ef4444','#8b5cf6','#ec4899','#f59e0b','#14b8a6','#22c55e','#3b82f6','#f97316','#94a3b8'];
   if(gl.length){
@@ -462,7 +454,6 @@ function mkCharts(d, fc){
         plugins:{legend:{position:'right',labels:{color:tc,font:{size:10},boxWidth:10,padding:6}}}}});
   }
 
-  // Faturas — totais dos items filtrados
   const cartVals=CARD_KEYS.map(k=>(fc[k]||[]).reduce((s,x)=>s+x.val,0));
   const cartColors=['#f59e0b88','#6366f188','#a855f788','#22c55e88','#ec489988'];
   const cartBorder=['#f59e0b','#6366f1','#a855f7','#22c55e','#ec4899'];
@@ -475,11 +466,45 @@ function mkCharts(d, fc){
 
 function mkItems(items){
   if(!items||!items.length) return '<p class="no-data">Sem itens.</p>';
-  return items.map(x=>`
-    <div class="ci">
-      <span class="desc">${x.desc}${x.date?' <small>('+x.date+')</small>':''}</span>
+  return items.map(x=>{
+    const compLink=x.comprovante_url
+      ?` <a href="${x.comprovante_url}" target="_blank" title="Ver comprovante">📎</a>`:'';
+    return `<div class="ci">
+      <span class="desc">${x.desc}${x.date?' <small>('+x.date+')</small>':''}${compLink}</span>
       <div class="right">${catBadge(x.cat)}<span class="v">${fmt(x.val)}</span><small>${x.parc||''}</small></div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
+}
+
+function renderComprovantes(d){
+  const el=document.getElementById('comp-container');
+  if(!d||!d.comprovantes||!d.comprovantes.length){
+    el.innerHTML=`<div class="comp-empty"><div class="icon">📂</div>
+      <p>Nenhum comprovante para este mês.</p>
+      <p style="font-size:.78rem;margin-top:6px;color:#334155">
+        Envie uma foto pelo WhatsApp ao registrar um gasto.</p></div>`;
+    return;
+  }
+  el.innerHTML=`<div class="comp-grid">${d.comprovantes.map(c=>{
+    const thumb=c.thumb_url||c.drive_url
+      ?`<img class="comp-thumb" src="${c.thumb_url||c.drive_url}" alt="comprovante" loading="lazy"
+             onerror="this.style.display='none';this.nextSibling.style.display='flex'">`
+      :'';
+    const placeholder=`<div class="comp-thumb-placeholder" style="display:${thumb?'none':'flex'}">🧾</div>`;
+    const verLink=c.drive_url?`<a href="${c.drive_url}" target="_blank">Ver comprovante ↗</a>`:'';
+    const card=c.card?`<span>${c.card}</span>`:'';
+    return `<div class="comp-card">
+      ${thumb}${placeholder}
+      <div class="comp-info">
+        <div class="comp-desc">${c.desc||'Sem descrição'}</div>
+        <div class="comp-meta">
+          <span class="comp-val">${c.val_str||''}</span>
+          ${card}<span>${c.date||''}</span>
+        </div>
+        <div style="margin-top:6px">${verLink}</div>
+      </div>
+    </div>`;
+  }).join('')}</div>`;
 }
 
 function setNoData(msg){
@@ -492,6 +517,8 @@ function setNoData(msg){
     `<div style="grid-column:1/-1;text-align:center;color:#475569;padding:30px">${msg}</div>`;
   ['v-rec','v-gas','v-sal','v-pag','v-prec'].forEach(id=>{ document.getElementById(id).textContent='—'; });
   document.getElementById('card-saldo').className='card c-pos';
+  document.getElementById('comp-container').innerHTML=
+    `<div class="comp-empty"><div class="icon">📂</div><p>${msg}</p></div>`;
 }
 
 function applyFilters(){
@@ -500,7 +527,6 @@ function applyFilters(){
   const fc=filteredCards(d);
   mkCharts(d, fc);
 
-  // Boxes dos cartões
   const activeCards=FILT.cards.size>0?FILT.cards:new Set(CARD_KEYS);
   document.getElementById('cartao-grid').innerHTML=CARD_KEYS
     .map(k=>({key:k,title:CARD_TITLES[k],items:fc[k],total:fc[k].reduce((s,x)=>s+x.val,0)}))
@@ -508,19 +534,16 @@ function applyFilters(){
     .map(c=>`<div class="cartao-box"><h2>${c.title}</h2>${mkItems(c.items)}
       <div class="ctotal">Total fatura: ${fmt(c.total)}</div></div>`).join('');
 
-  // Tabela gastos (filtro status)
   const fg=filteredStatus(d.gastos||[]);
   document.getElementById('tbody-gastos').innerHTML=fg.map(r=>
     `<tr><td>${r.desc}</td><td>${r.val_str}</td><td>${r.data||'—'}</td><td>${r.obs||'—'}</td><td>${badge(r.status)}</td></tr>`
   ).join('')||'<tr><td colspan="5" class="no-data">Sem gastos.</td></tr>';
 
-  // Tabela receitas (filtro status)
   const fr=filteredStatus(d.receitas||[]);
   document.getElementById('tbody-receitas').innerHTML=fr.map(r=>
     `<tr><td>${r.desc}</td><td>${r.val_str}</td><td>${r.data||'—'}</td><td>${badge(r.status)}</td></tr>`
   ).join('')||'<tr><td colspan="4" class="no-data">Sem receitas.</td></tr>';
 
-  // Tabela transações Inter (filtro categoria)
   const trans=fc.inter.filter(x=>x.date);
   document.getElementById('tbody-trans').innerHTML=trans.map(r=>
     `<tr><td>${r.date}</td><td>${r.desc}</td><td>${fmt(r.val)}</td><td>${r.parc||'—'}</td><td>${catBadge(r.cat)}</td></tr>`
@@ -530,7 +553,7 @@ function applyFilters(){
 function render(d){
   if(!d){ setNoData('Sem dados para este mês ainda.'); return; }
   if(d.total_gastos===0&&d.total_receitas===0){
-    setNoData('Este mês ainda não tem dados preenchidos na planilha.'); return;
+    setNoData('Este mês ainda não tem dados preenchidos.'); return;
   }
   CURR_DATA=d;
   document.getElementById('v-rec').textContent  = fmt(d.total_receitas);
@@ -540,9 +563,13 @@ function render(d){
   document.getElementById('v-prec').textContent = fmt(d.para_receber);
   document.getElementById('card-saldo').className='card '+(d.saldo>=0?'c-pos':'c-neg');
   applyFilters();
+  // Atualiza comprovantes se a aba estiver ativa
+  if(document.getElementById('tab-comprovantes').classList.contains('active'))
+    renderComprovantes(d);
 }
 
 function switchMonth(m){
+  CURR_MONTH=m;
   document.querySelectorAll('.month-btn').forEach(b=>b.classList.toggle('active',b.dataset.month===m));
   render(DATA[m]);
 }
@@ -555,35 +582,29 @@ switchMonth(firstWithData);
 </html>"""
 
 def generate_html(all_data, updated):
-    first = (next((m for m in MONTH_SHEETS if all_data.get(m) and
-                   (all_data[m]['total_gastos']>0 or all_data[m]['total_receitas']>0)), None)
-             or next((m for m in MONTH_SHEETS if all_data.get(m)), MONTH_SHEETS[0]))
     btns = ''.join(
         f'<button class="month-btn" data-month="{m}" onclick="switchMonth(\'{m}\')">'
         f'{MONTH_LABELS[m]}</button>'
         for m in MONTH_SHEETS if all_data.get(m) is not None
     )
     html = HTML
-    html = html.replace('__DATA__',         json.dumps(all_data, ensure_ascii=False))
-    html = html.replace('__LABELS__',       json.dumps(MONTH_LABELS, ensure_ascii=False))
-    html = html.replace('__CAT_COLORS__',   json.dumps(CAT_COLORS, ensure_ascii=False))
-    html = html.replace('__MONTH_ORDER__',  json.dumps(MONTH_SHEETS, ensure_ascii=False))
-    html = html.replace('__UPDATED__',      updated)
+    html = html.replace('__DATA__',          json.dumps(all_data, ensure_ascii=False))
+    html = html.replace('__LABELS__',        json.dumps(MONTH_LABELS, ensure_ascii=False))
+    html = html.replace('__CAT_COLORS__',    json.dumps(CAT_COLORS, ensure_ascii=False))
+    html = html.replace('__MONTH_ORDER__',   json.dumps(MONTH_SHEETS, ensure_ascii=False))
+    html = html.replace('__UPDATED__',       updated)
     html = html.replace('__MONTH_BUTTONS__', btns)
     return html
 
 def main():
     now = datetime.now(timezone.utc).strftime('%d/%m/%Y %H:%M UTC')
-    all_data = {}
-    for sheet in MONTH_SHEETS:
-        print(f'Buscando {sheet}...')
-        text = fetch_csv(sheet)
-        data = extract(text)
-        all_data[sheet] = data
+    print('Carregando data/wpp_transactions.json...')
+    all_data = load_json_data()
+    for month, data in all_data.items():
         if data and (data['total_gastos'] > 0 or data['total_receitas'] > 0):
-            print(f'  OK  gastos={data["total_gastos"]:.2f}  receitas={data["total_receitas"]:.2f}')
+            print(f'  {month}: gastos={data["total_gastos"]:.2f}  receitas={data["total_receitas"]:.2f}')
         else:
-            print(f'  Sem dados ou valores zerados')
+            print(f'  {month}: sem dados')
     print('Gerando dashboard.html...')
     with open('dashboard.html', 'w', encoding='utf-8') as f:
         f.write(generate_html(all_data, now))

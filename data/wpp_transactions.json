@@ -1,1 +1,20 @@
-{}
+{
+  "MARÇO": {
+    "gastos": [
+      {
+        "desc": "compra no mercado",
+        "val_str": "R$ 50,00",
+        "val": 50.0,
+        "data": "31",
+        "obs": "gasto em dinheiro",
+        "status": "Nao pago"
+      }
+    ],
+    "receitas": [],
+    "inter": [],
+    "itau": [],
+    "nubank": [],
+    "caixa": [],
+    "nubank_nath": []
+  }
+}

@@ -8,6 +8,14 @@
         "data": "31",
         "obs": "gasto em dinheiro",
         "status": "Nao pago"
+      },
+      {
+        "desc": "Almoço",
+        "val_str": "R$ 50,00",
+        "val": 50.0,
+        "data": "31",
+        "obs": "Gasto em dinheiro",
+        "status": "Nao pago"
       }
     ],
     "receitas": [],

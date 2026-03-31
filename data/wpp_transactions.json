@@ -2,27 +2,2893 @@
   "MARÇO": {
     "gastos": [
       {
-        "desc": "compra no mercado",
-        "val_str": "R$ 50,00",
-        "val": 50.0,
-        "data": "31",
-        "obs": "gasto em dinheiro",
-        "status": "Nao pago"
+        "desc": "Água",
+        "val_str": "R$ 209,00",
+        "val": 209.0,
+        "data": "30",
+        "obs": "Variável",
+        "status": "Pago"
       },
       {
-        "desc": "Almoço",
+        "desc": "Energia",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "10",
+        "obs": "Variável",
+        "status": "Pago"
+      },
+      {
+        "desc": "Condomínio",
+        "val_str": "R$ 500,00",
+        "val": 500.0,
+        "data": "15",
+        "obs": "Variável",
+        "status": "Pago"
+      },
+      {
+        "desc": "Internet res.",
+        "val_str": "R$ 99,90",
+        "val": 99.9,
+        "data": "10",
+        "obs": "Déb. Automático",
+        "status": "Pago"
+      },
+      {
+        "desc": "Dízimo",
+        "val_str": "R$ 800,00",
+        "val": 800.0,
+        "data": "1",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Sobrancelha Nath",
         "val_str": "R$ 50,00",
         "val": 50.0,
-        "data": "31",
-        "obs": "Gasto em dinheiro",
-        "status": "Nao pago"
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Pago"
+      },
+      {
+        "desc": "Financiamento",
+        "val_str": "R$ 2.342,00",
+        "val": 2342.0,
+        "data": "15",
+        "obs": "Recorrente",
+        "status": "Pago"
+      },
+      {
+        "desc": "Capitalização",
+        "val_str": "R$ 400,00",
+        "val": 400.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Pago"
+      },
+      {
+        "desc": "Fatura Inter",
+        "val_str": "R$ 1.175,46",
+        "val": 1175.46,
+        "data": "2",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Nubank",
+        "val_str": "R$ 594,00",
+        "val": 594.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Pago"
+      },
+      {
+        "desc": "Fatura Caixa",
+        "val_str": "R$ 822,84",
+        "val": 822.84,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Pago"
+      },
+      {
+        "desc": "Pagamento JANE",
+        "val_str": "R$ 180,00",
+        "val": 180.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Pago"
+      },
+      {
+        "desc": "Plano de saúde Nath e Mel",
+        "val_str": "R$ 626,00",
+        "val": 626.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Pago"
+      },
+      {
+        "desc": "Fatura NUBANK Nath",
+        "val_str": "R$ 250,33",
+        "val": 250.33,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Pago"
+      },
+      {
+        "desc": "Aniversário MEL",
+        "val_str": "R$ 1.000,00",
+        "val": 1000.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Pago"
+      },
+      {
+        "desc": "Seguro carro",
+        "val_str": "R$ 205,00",
+        "val": 205.0,
+        "data": "12",
+        "obs": "Recorrente",
+        "status": "Pago"
+      },
+      {
+        "desc": "IPVA",
+        "val_str": "R$ 260,00",
+        "val": 260.0,
+        "data": "15",
+        "obs": "3 de 9",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Cartão Itaú",
+        "val_str": "R$ 2.370,00",
+        "val": 2370.0,
+        "data": "",
+        "obs": "",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento HB20",
+        "val_str": "R$ 1.320,00",
+        "val": 1320.0,
+        "data": "",
+        "obs": "20 de 38",
+        "status": "Pago"
       }
     ],
-    "receitas": [],
-    "inter": [],
+    "receitas": [
+      {
+        "desc": "RT AlanTel",
+        "val_str": "R$ 200,00",
+        "val": 200.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Intel Fibra",
+        "val_str": "R$ 250,00",
+        "val": 250.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Gyn",
+        "val_str": "R$ 300,00",
+        "val": 300.0,
+        "data": "10",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 1",
+        "val_str": "R$ 5.000,00",
+        "val": 5000.0,
+        "data": "15",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Salário RF",
+        "val_str": "R$ 6.360,00",
+        "val": 6360.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 2",
+        "val_str": "R$ 2.000,00",
+        "val": 2000.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "GASTOS IBNET / ESTORNO",
+        "val_str": "R$ 1.542,65",
+        "val": 1542.65,
+        "data": "30",
+        "status": "Não recebido"
+      }
+    ],
+    "inter": [
+      {
+        "desc": "Montagem móveis Melinda",
+        "val": 35.32,
+        "parc": "5 de 10",
+        "cat": "Casa",
+        "val_str": "R$ 35,32"
+      },
+      {
+        "desc": "Limpeza Sofá",
+        "val": 100.0,
+        "parc": "6 de 6",
+        "cat": "Casa",
+        "val_str": "R$ 100,00"
+      },
+      {
+        "desc": "Guarda roupa Melinda",
+        "val": 259.42,
+        "parc": "6 de 8",
+        "cat": "Vestuário",
+        "val_str": "R$ 259,42"
+      },
+      {
+        "desc": "Milhas",
+        "val": 11.66,
+        "parc": "7 de 10",
+        "cat": "Lazer",
+        "val_str": "R$ 11,66"
+      },
+      {
+        "desc": "A/C IBnet",
+        "val": 242.47,
+        "parc": "7 de 10",
+        "cat": "Serviços",
+        "val_str": "R$ 242,47"
+      },
+      {
+        "desc": "Colchão Igor e Nath",
+        "val": 249.91,
+        "parc": "7 de 12",
+        "cat": "Casa",
+        "val_str": "R$ 249,91"
+      },
+      {
+        "desc": "Smiles Clube",
+        "val": 77.9,
+        "parc": "3 de 6",
+        "cat": "Lazer",
+        "val_str": "R$ 77,90"
+      },
+      {
+        "desc": "Livelo Clube",
+        "val": 42.65,
+        "parc": "3 de 12",
+        "cat": "Lazer",
+        "val_str": "R$ 42,65"
+      },
+      {
+        "desc": "drogaria pague menos",
+        "val": 93.13,
+        "parc": "2 de 2",
+        "cat": "Saúde",
+        "val_str": "R$ 93,13"
+      },
+      {
+        "desc": "Drogaria Rodrigues ASSIS",
+        "val": 63.0,
+        "parc": "3 de 3",
+        "cat": "Saúde",
+        "val_str": "R$ 63,00"
+      }
+    ],
+    "itau": [
+      {
+        "desc": "Alimentação mensal",
+        "val": 850.0,
+        "parc": "UNICA",
+        "cat": "Alimentação",
+        "val_str": "R$ 850,00"
+      },
+      {
+        "desc": "Comer fora",
+        "val": 400.0,
+        "parc": "UNICA",
+        "cat": "Alimentação",
+        "val_str": "R$ 400,00"
+      },
+      {
+        "desc": "Combustivel",
+        "val": 250.0,
+        "parc": "UNICA",
+        "cat": "Transporte",
+        "val_str": "R$ 250,00"
+      },
+      {
+        "desc": "Academia Igor",
+        "val": 140.0,
+        "parc": "UNICA",
+        "cat": "Lazer",
+        "val_str": "R$ 140,00"
+      },
+      {
+        "desc": "Academia Nath",
+        "val": 130.0,
+        "parc": "UNICA",
+        "cat": "Lazer",
+        "val_str": "R$ 130,00"
+      },
+      {
+        "desc": "Anivers",
+        "val": 600.0,
+        "parc": "",
+        "cat": "Lazer",
+        "val_str": "R$ 600,00"
+      }
+    ],
+    "nubank": [
+      {
+        "desc": "Amazon PS5",
+        "val": 384.0,
+        "parc": "9 de 10",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 384,00"
+      },
+      {
+        "desc": "Madeira guarda roupa",
+        "val": 210.0,
+        "parc": "6 de 10",
+        "cat": "Vestuário",
+        "val_str": "R$ 210,00"
+      }
+    ],
+    "caixa": [
+      {
+        "desc": "Vivara cunhada",
+        "val": 61.0,
+        "parc": "10 de 10",
+        "cat": "Vestuário",
+        "val_str": "R$ 61,00"
+      },
+      {
+        "desc": "Vacina bronquilite Melinda",
+        "val": 261.84,
+        "parc": "5 de 6",
+        "cat": "Saúde",
+        "val_str": "R$ 261,84"
+      },
+      {
+        "desc": "Compra ONT IBNET",
+        "val": 500.0,
+        "parc": "2 de 3",
+        "cat": "Casa",
+        "val_str": "R$ 500,00"
+      }
+    ],
+    "nubank_nath": [
+      {
+        "desc": "Apple Watch - ML",
+        "val": 154.25,
+        "parc": "5 de 12",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 154,25"
+      },
+      {
+        "desc": "iCloud",
+        "val": 5.9,
+        "parc": "Recorrente",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 5,90"
+      },
+      {
+        "desc": "Shopee descobrir",
+        "val": 60.87,
+        "parc": "7 de 7",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 60,87"
+      },
+      {
+        "desc": "Wepink",
+        "val": 29.31,
+        "parc": "6 de 6",
+        "cat": "Serviços",
+        "val_str": "R$ 29,31"
+      }
+    ],
+    "comprovantes": []
+  },
+  "ABRIL": {
+    "gastos": [
+      {
+        "desc": "Água",
+        "val_str": "R$ 209,00",
+        "val": 209.0,
+        "data": "30",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Energia",
+        "val_str": "R$ 600,00",
+        "val": 600.0,
+        "data": "10",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Condomínio",
+        "val_str": "R$ 550,00",
+        "val": 550.0,
+        "data": "15",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Internet res.",
+        "val_str": "R$ 99,90",
+        "val": 99.9,
+        "data": "10",
+        "obs": "Déb. Automático",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Dízimo",
+        "val_str": "R$ 800,00",
+        "val": 800.0,
+        "data": "1",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Sobrancelha Nath",
+        "val_str": "R$ 50,00",
+        "val": 50.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento",
+        "val_str": "R$ 2.342,00",
+        "val": 2342.0,
+        "data": "15",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Capitalização",
+        "val_str": "R$ 400,00",
+        "val": 400.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Inter",
+        "val_str": "R$ 3.294,30",
+        "val": 3294.3,
+        "data": "2",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Nubank",
+        "val_str": "R$ 594,00",
+        "val": 594.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Caixa",
+        "val_str": "R$ 261,84",
+        "val": 261.84,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Pagamento JANE",
+        "val_str": "R$ 180,00",
+        "val": 180.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura NUBANK Nath",
+        "val_str": "R$ 160,15",
+        "val": 160.15,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "GUARDAR P/ EUA",
+        "val_str": "R$ 1.000,00",
+        "val": 1000.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Seguro carro",
+        "val_str": "R$ 205,00",
+        "val": 205.0,
+        "data": "12",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "IPVA",
+        "val_str": "R$ 260,00",
+        "val": 260.0,
+        "data": "15",
+        "obs": "4 de 9",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Cartão Itaú",
+        "val_str": "R$ 513,48",
+        "val": 513.48,
+        "data": "",
+        "obs": "",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento HB20",
+        "val_str": "R$ 1.320,00",
+        "val": 1320.0,
+        "data": "",
+        "obs": "22 de 38",
+        "status": "Não pago"
+      }
+    ],
+    "receitas": [
+      {
+        "desc": "RT Intel Fibra",
+        "val_str": "R$ 250,00",
+        "val": 250.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Gyn",
+        "val_str": "R$ 300,00",
+        "val": 300.0,
+        "data": "10",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 1",
+        "val_str": "R$ 5.000,00",
+        "val": 5000.0,
+        "data": "15",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Salário RF",
+        "val_str": "R$ 6.360,00",
+        "val": 6360.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 2",
+        "val_str": "R$ 2.000,00",
+        "val": 2000.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "GASTOS IBNET / ESTORNO",
+        "val_str": "R$ 771,36",
+        "val": 771.36,
+        "data": "30",
+        "status": "Não recebido"
+      }
+    ],
+    "inter": [
+      {
+        "desc": "Montagem móveis Melinda",
+        "val": 35.32,
+        "parc": "6 de 10",
+        "cat": "Casa",
+        "val_str": "R$ 35,32"
+      },
+      {
+        "desc": "Guarda roupa Melinda",
+        "val": 259.42,
+        "parc": "7 de 8",
+        "cat": "Vestuário",
+        "val_str": "R$ 259,42"
+      },
+      {
+        "desc": "Milhas",
+        "val": 11.66,
+        "parc": "8 de 10",
+        "cat": "Lazer",
+        "val_str": "R$ 11,66"
+      },
+      {
+        "desc": "A/C IBnet",
+        "val": 242.47,
+        "parc": "8 de 10",
+        "cat": "Serviços",
+        "val_str": "R$ 242,47"
+      },
+      {
+        "desc": "Colchão Igor e Nath",
+        "val": 249.91,
+        "parc": "8 de 12",
+        "cat": "Casa",
+        "val_str": "R$ 249,91"
+      },
+      {
+        "desc": "Smiles Clube",
+        "val": 77.9,
+        "parc": "4 de 6",
+        "cat": "Lazer",
+        "val_str": "R$ 77,90"
+      },
+      {
+        "desc": "Livelo Clube",
+        "val": 42.65,
+        "parc": "4 de 12",
+        "cat": "Lazer",
+        "val_str": "R$ 42,65"
+      },
+      {
+        "desc": "Servidor IBnet",
+        "val": 424.99,
+        "parc": "3 de 10",
+        "cat": "Serviços",
+        "val_str": "R$ 424,99"
+      },
+      {
+        "desc": "Mesa IBnet",
+        "val": 148.28,
+        "parc": "2 de 10",
+        "cat": "Serviços",
+        "val_str": "R$ 148,28"
+      },
+      {
+        "desc": "Camiseta L'evis Igor",
+        "val": 121.89,
+        "parc": "UNICA",
+        "cat": "Outros",
+        "val_str": "R$ 121,89"
+      },
+      {
+        "desc": "Açaí do Josy",
+        "val": 44.0,
+        "parc": "UNICA",
+        "cat": "Alimentação",
+        "val_str": "R$ 44,00"
+      },
+      {
+        "desc": "Trufa cacau show",
+        "val": 14.97,
+        "parc": "UNICA",
+        "cat": "Outros",
+        "val_str": "R$ 14,97"
+      },
+      {
+        "desc": "Espetinho Igor",
+        "val": 20.0,
+        "parc": "UNICA",
+        "cat": "Alimentação",
+        "val_str": "R$ 20,00"
+      },
+      {
+        "desc": "Corte de cabelo mensal Igor",
+        "val": 124.99,
+        "parc": "recorrente",
+        "cat": "Outros",
+        "val_str": "R$ 124,99"
+      },
+      {
+        "desc": "Roupas para Melinda",
+        "val": 131.88,
+        "parc": "UNICA",
+        "cat": "Vestuário",
+        "val_str": "R$ 131,88"
+      },
+      {
+        "desc": "Remédios farmácia",
+        "val": 60.97,
+        "parc": "UNICA",
+        "cat": "Saúde",
+        "val_str": "R$ 60,97"
+      },
+      {
+        "desc": "Macarrão feira",
+        "val": 25.0,
+        "parc": "UNICA",
+        "cat": "Outros",
+        "val_str": "R$ 25,00"
+      },
+      {
+        "desc": "Espetinho Igor",
+        "val": 28.0,
+        "parc": "UNICA",
+        "cat": "Alimentação",
+        "val_str": "R$ 28,00"
+      },
+      {
+        "desc": "Churros Igor e Nath",
+        "val": 16.0,
+        "parc": "UNICA",
+        "cat": "Outros",
+        "val_str": "R$ 16,00"
+      }
+    ],
+    "itau": [
+      {
+        "desc": "Ingressos beach park",
+        "val": 189.0,
+        "parc": "2 de 2",
+        "cat": "Outros",
+        "val_str": "R$ 189,00"
+      },
+      {
+        "desc": "Inner AI IBnet",
+        "val": 79.9,
+        "parc": "2 de 12",
+        "cat": "Serviços",
+        "val_str": "R$ 79,90"
+      },
+      {
+        "desc": "Tintas para IBnet",
+        "val": 178.58,
+        "parc": "3 de 3",
+        "cat": "Serviços",
+        "val_str": "R$ 178,58"
+      },
+      {
+        "desc": "Sutiã amamentação",
+        "val": 66.0,
+        "parc": "2 de 2",
+        "cat": "Vestuário",
+        "val_str": "R$ 66,00"
+      }
+    ],
+    "nubank": [
+      {
+        "desc": "Amazon PS5",
+        "val": 384.0,
+        "parc": "10 de 10",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 384,00"
+      },
+      {
+        "desc": "Madeira guarda roupa",
+        "val": 210.0,
+        "parc": "7 de 10",
+        "cat": "Vestuário",
+        "val_str": "R$ 210,00"
+      }
+    ],
+    "caixa": [
+      {
+        "desc": "Vacina bronquilite Melinda",
+        "val": 261.84,
+        "parc": "5 de 6",
+        "cat": "Saúde",
+        "val_str": "R$ 261,84"
+      }
+    ],
+    "nubank_nath": [
+      {
+        "desc": "Apple Watch - ML",
+        "val": 154.25,
+        "parc": "5 de 12",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 154,25"
+      },
+      {
+        "desc": "iCloud",
+        "val": 5.9,
+        "parc": "Recorrente",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 5,90"
+      }
+    ],
+    "comprovantes": []
+  },
+  "MAIO": {
+    "gastos": [
+      {
+        "desc": "Água",
+        "val_str": "R$ 209,00",
+        "val": 209.0,
+        "data": "30",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Energia",
+        "val_str": "R$ 480,00",
+        "val": 480.0,
+        "data": "10",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Condomínio",
+        "val_str": "R$ 550,00",
+        "val": 550.0,
+        "data": "15",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Internet res.",
+        "val_str": "R$ 99,90",
+        "val": 99.9,
+        "data": "10",
+        "obs": "Déb. Automático",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Dízimo",
+        "val_str": "R$ 800,00",
+        "val": 800.0,
+        "data": "1",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Sobrancelha Nath",
+        "val_str": "R$ 50,00",
+        "val": 50.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento",
+        "val_str": "R$ 2.342,00",
+        "val": 2342.0,
+        "data": "15",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Capitalização",
+        "val_str": "R$ 400,00",
+        "val": 400.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Inter",
+        "val_str": "R$ 919,33",
+        "val": 919.33,
+        "data": "2",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Nubank",
+        "val_str": "R$ 210,00",
+        "val": 210.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Caixa",
+        "val_str": "R$ 761,84",
+        "val": 761.84,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Pagamento JANE",
+        "val_str": "R$ 180,00",
+        "val": 180.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Plano de saúde Nath e Mel",
+        "val_str": "R$ 626,00",
+        "val": 626.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura NUBANK Nath",
+        "val_str": "R$ 160,15",
+        "val": 160.15,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "GUARDAR P/ EUA",
+        "val_str": "R$ 1.000,00",
+        "val": 1000.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Seguro carro",
+        "val_str": "R$ 205,00",
+        "val": 205.0,
+        "data": "12",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "IPVA",
+        "val_str": "R$ 260,00",
+        "val": 260.0,
+        "data": "15",
+        "obs": "5 de 9",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Cartão Itaú",
+        "val_str": "R$ 2.370,00",
+        "val": 2370.0,
+        "data": "",
+        "obs": "",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento HB20",
+        "val_str": "R$ 1.320,00",
+        "val": 1320.0,
+        "data": "",
+        "obs": "23 de 38",
+        "status": "Não pago"
+      }
+    ],
+    "receitas": [
+      {
+        "desc": "RT AlanTel",
+        "val_str": "R$ 200,00",
+        "val": 200.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Intel Fibra",
+        "val_str": "R$ 250,00",
+        "val": 250.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Gyn",
+        "val_str": "R$ 300,00",
+        "val": 300.0,
+        "data": "10",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 1",
+        "val_str": "R$ 4.500,00",
+        "val": 4500.0,
+        "data": "15",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Salário RF",
+        "val_str": "R$ 6.360,00",
+        "val": 6360.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 2",
+        "val_str": "R$ 2.000,00",
+        "val": 2000.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "GASTOS IBNET / ESTORNO",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "30",
+        "status": "Não recebido"
+      }
+    ],
+    "inter": [
+      {
+        "desc": "Montagem móveis Melinda",
+        "val": 35.32,
+        "parc": "6 de 10",
+        "cat": "Casa",
+        "val_str": "R$ 35,32"
+      },
+      {
+        "desc": "Guarda roupa Melinda",
+        "val": 259.42,
+        "parc": "7 de 8",
+        "cat": "Vestuário",
+        "val_str": "R$ 259,42"
+      },
+      {
+        "desc": "Milhas",
+        "val": 11.66,
+        "parc": "8 de 10",
+        "cat": "Lazer",
+        "val_str": "R$ 11,66"
+      },
+      {
+        "desc": "A/C IBnet",
+        "val": 242.47,
+        "parc": "8 de 10",
+        "cat": "Serviços",
+        "val_str": "R$ 242,47"
+      },
+      {
+        "desc": "Colchão Igor e Nath",
+        "val": 249.91,
+        "parc": "8 de 12",
+        "cat": "Casa",
+        "val_str": "R$ 249,91"
+      },
+      {
+        "desc": "Smiles Clube",
+        "val": 77.9,
+        "parc": "4 de 6",
+        "cat": "Lazer",
+        "val_str": "R$ 77,90"
+      },
+      {
+        "desc": "Livelo Clube",
+        "val": 42.65,
+        "parc": "4 de 12",
+        "cat": "Lazer",
+        "val_str": "R$ 42,65"
+      }
+    ],
+    "itau": [
+      {
+        "desc": "Alimentação mensal",
+        "val": 850.0,
+        "parc": "UNICA",
+        "cat": "Alimentação",
+        "val_str": "R$ 850,00"
+      },
+      {
+        "desc": "Comer fora",
+        "val": 400.0,
+        "parc": "UNICA",
+        "cat": "Alimentação",
+        "val_str": "R$ 400,00"
+      },
+      {
+        "desc": "Combustivel",
+        "val": 850.0,
+        "parc": "UNICA",
+        "cat": "Transporte",
+        "val_str": "R$ 850,00"
+      },
+      {
+        "desc": "Academia Igor",
+        "val": 140.0,
+        "parc": "UNICA",
+        "cat": "Lazer",
+        "val_str": "R$ 140,00"
+      },
+      {
+        "desc": "Academia Nath",
+        "val": 130.0,
+        "parc": "UNICA",
+        "cat": "Lazer",
+        "val_str": "R$ 130,00"
+      }
+    ],
+    "nubank": [
+      {
+        "desc": "Madeira guarda roupa",
+        "val": 210.0,
+        "parc": "8 de 10",
+        "cat": "Vestuário",
+        "val_str": "R$ 210,00"
+      }
+    ],
+    "caixa": [
+      {
+        "desc": "Vacina bronquilite Melinda",
+        "val": 261.84,
+        "parc": "6 de 6",
+        "cat": "Saúde",
+        "val_str": "R$ 261,84"
+      },
+      {
+        "desc": "Compra ONT IBNET",
+        "val": 500.0,
+        "parc": "3 de 3",
+        "cat": "Casa",
+        "val_str": "R$ 500,00"
+      }
+    ],
+    "nubank_nath": [
+      {
+        "desc": "Apple Watch - ML",
+        "val": 154.25,
+        "parc": "7 de 12",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 154,25"
+      },
+      {
+        "desc": "iCloud",
+        "val": 5.9,
+        "parc": "Recorrente",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 5,90"
+      }
+    ],
+    "comprovantes": []
+  },
+  "JUNHO": {
+    "gastos": [
+      {
+        "desc": "Água",
+        "val_str": "R$ 209,00",
+        "val": 209.0,
+        "data": "30",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Energia",
+        "val_str": "R$ 480,00",
+        "val": 480.0,
+        "data": "10",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Condomínio",
+        "val_str": "R$ 550,00",
+        "val": 550.0,
+        "data": "15",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Internet res.",
+        "val_str": "R$ 99,90",
+        "val": 99.9,
+        "data": "10",
+        "obs": "Déb. Automático",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Dízimo",
+        "val_str": "R$ 800,00",
+        "val": 800.0,
+        "data": "1",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Sobrancelha Nath",
+        "val_str": "R$ 50,00",
+        "val": 50.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento",
+        "val_str": "R$ 2.342,00",
+        "val": 2342.0,
+        "data": "15",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Capitalização",
+        "val_str": "R$ 400,00",
+        "val": 400.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Inter",
+        "val_str": "R$ 919,33",
+        "val": 919.33,
+        "data": "2",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Nubank",
+        "val_str": "R$ 210,00",
+        "val": 210.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Caixa",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Pagamento JANE",
+        "val_str": "R$ 180,00",
+        "val": 180.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Plano de saúde Nath e Mel",
+        "val_str": "R$ 626,00",
+        "val": 626.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura NUBANK Nath",
+        "val_str": "R$ 160,15",
+        "val": 160.15,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "GUARDAR P/ EUA",
+        "val_str": "R$ 1.000,00",
+        "val": 1000.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Seguro carro",
+        "val_str": "R$ 205,00",
+        "val": 205.0,
+        "data": "12",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "IPVA",
+        "val_str": "R$ 260,00",
+        "val": 260.0,
+        "data": "15",
+        "obs": "6 de 9",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Cartão Itaú",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento HB20",
+        "val_str": "R$ 1.320,00",
+        "val": 1320.0,
+        "data": "",
+        "obs": "24 de 38",
+        "status": "Não pago"
+      }
+    ],
+    "receitas": [
+      {
+        "desc": "RT AlanTel",
+        "val_str": "R$ 200,00",
+        "val": 200.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Intel Fibra",
+        "val_str": "R$ 250,00",
+        "val": 250.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Gyn",
+        "val_str": "R$ 300,00",
+        "val": 300.0,
+        "data": "10",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 1",
+        "val_str": "R$ 4.500,00",
+        "val": 4500.0,
+        "data": "15",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Salário RF",
+        "val_str": "R$ 6.360,00",
+        "val": 6360.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 2",
+        "val_str": "R$ 2.000,00",
+        "val": 2000.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "GASTOS IBNET / ESTORNO",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "30",
+        "status": "Não recebido"
+      }
+    ],
+    "inter": [
+      {
+        "desc": "Montagem móveis Melinda",
+        "val": 35.32,
+        "parc": "7 de 10",
+        "cat": "Casa",
+        "val_str": "R$ 35,32"
+      },
+      {
+        "desc": "Guarda roupa Melinda",
+        "val": 259.42,
+        "parc": "8 de 8",
+        "cat": "Vestuário",
+        "val_str": "R$ 259,42"
+      },
+      {
+        "desc": "Milhas",
+        "val": 11.66,
+        "parc": "9 de 10",
+        "cat": "Lazer",
+        "val_str": "R$ 11,66"
+      },
+      {
+        "desc": "A/C IBnet",
+        "val": 242.47,
+        "parc": "9 de 10",
+        "cat": "Serviços",
+        "val_str": "R$ 242,47"
+      },
+      {
+        "desc": "Colchão Igor e Nath",
+        "val": 249.91,
+        "parc": "9 de 12",
+        "cat": "Casa",
+        "val_str": "R$ 249,91"
+      },
+      {
+        "desc": "Smiles Clube",
+        "val": 77.9,
+        "parc": "5 de 6",
+        "cat": "Lazer",
+        "val_str": "R$ 77,90"
+      },
+      {
+        "desc": "Livelo Clube",
+        "val": 42.65,
+        "parc": "5 de 12",
+        "cat": "Lazer",
+        "val_str": "R$ 42,65"
+      }
+    ],
+    "itau": [],
+    "nubank": [
+      {
+        "desc": "Madeira guarda roupa",
+        "val": 210.0,
+        "parc": "9 de 10",
+        "cat": "Vestuário",
+        "val_str": "R$ 210,00"
+      }
+    ],
+    "caixa": [],
+    "nubank_nath": [
+      {
+        "desc": "Apple Watch - ML",
+        "val": 154.25,
+        "parc": "8 de 12",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 154,25"
+      },
+      {
+        "desc": "iCloud",
+        "val": 5.9,
+        "parc": "Recorrente",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 5,90"
+      }
+    ],
+    "comprovantes": []
+  },
+  "JULHO": {
+    "gastos": [
+      {
+        "desc": "Água",
+        "val_str": "R$ 209,00",
+        "val": 209.0,
+        "data": "30",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Energia",
+        "val_str": "R$ 480,00",
+        "val": 480.0,
+        "data": "10",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Condomínio",
+        "val_str": "R$ 550,00",
+        "val": 550.0,
+        "data": "15",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Internet res.",
+        "val_str": "R$ 99,90",
+        "val": 99.9,
+        "data": "10",
+        "obs": "Déb. Automático",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Dízimo",
+        "val_str": "R$ 800,00",
+        "val": 800.0,
+        "data": "1",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Sobrancelha Nath",
+        "val_str": "R$ 50,00",
+        "val": 50.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento",
+        "val_str": "R$ 2.342,00",
+        "val": 2342.0,
+        "data": "15",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Capitalização",
+        "val_str": "R$ 400,00",
+        "val": 400.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Inter",
+        "val_str": "R$ 659,91",
+        "val": 659.91,
+        "data": "2",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Nubank",
+        "val_str": "R$ 210,00",
+        "val": 210.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Caixa",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Pagamento JANE",
+        "val_str": "R$ 180,00",
+        "val": 180.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Plano de saúde Nath e Mel",
+        "val_str": "R$ 626,00",
+        "val": 626.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura NUBANK Nath",
+        "val_str": "R$ 160,15",
+        "val": 160.15,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "GUARDAR P/ EUA",
+        "val_str": "R$ 1.000,00",
+        "val": 1000.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Seguro carro",
+        "val_str": "R$ 205,00",
+        "val": 205.0,
+        "data": "12",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "IPVA",
+        "val_str": "R$ 260,00",
+        "val": 260.0,
+        "data": "15",
+        "obs": "7 de 9",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Cartão Itaú",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento HB20",
+        "val_str": "R$ 1.320,00",
+        "val": 1320.0,
+        "data": "",
+        "obs": "25 de 38",
+        "status": "Não pago"
+      }
+    ],
+    "receitas": [
+      {
+        "desc": "RT AlanTel",
+        "val_str": "R$ 200,00",
+        "val": 200.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Intel Fibra",
+        "val_str": "R$ 250,00",
+        "val": 250.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Gyn",
+        "val_str": "R$ 300,00",
+        "val": 300.0,
+        "data": "10",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 1",
+        "val_str": "R$ 4.500,00",
+        "val": 4500.0,
+        "data": "15",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Salário RF",
+        "val_str": "R$ 6.360,00",
+        "val": 6360.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 2",
+        "val_str": "R$ 2.000,00",
+        "val": 2000.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "GASTOS IBNET / ESTORNO",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "30",
+        "status": "Não recebido"
+      }
+    ],
+    "inter": [
+      {
+        "desc": "Montagem móveis Melinda",
+        "val": 35.32,
+        "parc": "8 de 10",
+        "cat": "Casa",
+        "val_str": "R$ 35,32"
+      },
+      {
+        "desc": "Milhas",
+        "val": 11.66,
+        "parc": "10 de 10",
+        "cat": "Lazer",
+        "val_str": "R$ 11,66"
+      },
+      {
+        "desc": "A/C IBnet",
+        "val": 242.47,
+        "parc": "10 de 10",
+        "cat": "Serviços",
+        "val_str": "R$ 242,47"
+      },
+      {
+        "desc": "Colchão Igor e Nath",
+        "val": 249.91,
+        "parc": "10 de 12",
+        "cat": "Casa",
+        "val_str": "R$ 249,91"
+      },
+      {
+        "desc": "Smiles Clube",
+        "val": 77.9,
+        "parc": "6 de 6",
+        "cat": "Lazer",
+        "val_str": "R$ 77,90"
+      },
+      {
+        "desc": "Livelo Clube",
+        "val": 42.65,
+        "parc": "6 de 12",
+        "cat": "Lazer",
+        "val_str": "R$ 42,65"
+      }
+    ],
+    "itau": [],
+    "nubank": [
+      {
+        "desc": "Madeira guarda roupa",
+        "val": 210.0,
+        "parc": "10 de 10",
+        "cat": "Vestuário",
+        "val_str": "R$ 210,00"
+      }
+    ],
+    "caixa": [],
+    "nubank_nath": [
+      {
+        "desc": "Apple Watch - ML",
+        "val": 154.25,
+        "parc": "8 de 12",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 154,25"
+      },
+      {
+        "desc": "iCloud",
+        "val": 5.9,
+        "parc": "Recorrente",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 5,90"
+      }
+    ],
+    "comprovantes": []
+  },
+  "AGOSTO": {
+    "gastos": [
+      {
+        "desc": "Água",
+        "val_str": "R$ 209,00",
+        "val": 209.0,
+        "data": "30",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Energia",
+        "val_str": "R$ 480,00",
+        "val": 480.0,
+        "data": "10",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Condomínio",
+        "val_str": "R$ 550,00",
+        "val": 550.0,
+        "data": "15",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Internet res.",
+        "val_str": "R$ 99,90",
+        "val": 99.9,
+        "data": "10",
+        "obs": "Déb. Automático",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Dízimo",
+        "val_str": "R$ 800,00",
+        "val": 800.0,
+        "data": "1",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Sobrancelha Nath",
+        "val_str": "R$ 50,00",
+        "val": 50.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento",
+        "val_str": "R$ 2.342,00",
+        "val": 2342.0,
+        "data": "15",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Capitalização",
+        "val_str": "R$ 400,00",
+        "val": 400.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Inter",
+        "val_str": "R$ 327,88",
+        "val": 327.88,
+        "data": "2",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Nubank",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Caixa",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Pagamento JANE",
+        "val_str": "R$ 180,00",
+        "val": 180.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Plano de saúde Nath e Mel",
+        "val_str": "R$ 626,00",
+        "val": 626.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura NUBANK Nath",
+        "val_str": "R$ 160,15",
+        "val": 160.15,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "GUARDAR P/ EUA",
+        "val_str": "R$ 1.000,00",
+        "val": 1000.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Seguro carro",
+        "val_str": "R$ 205,00",
+        "val": 205.0,
+        "data": "12",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "IPVA",
+        "val_str": "R$ 260,00",
+        "val": 260.0,
+        "data": "15",
+        "obs": "7 de 9",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Cartão Itaú",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento HB20",
+        "val_str": "R$ 1.320,00",
+        "val": 1320.0,
+        "data": "",
+        "obs": "25 de 38",
+        "status": "Não pago"
+      }
+    ],
+    "receitas": [
+      {
+        "desc": "RT AlanTel",
+        "val_str": "R$ 200,00",
+        "val": 200.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Intel Fibra",
+        "val_str": "R$ 250,00",
+        "val": 250.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Gyn",
+        "val_str": "R$ 300,00",
+        "val": 300.0,
+        "data": "10",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 1",
+        "val_str": "R$ 4.500,00",
+        "val": 4500.0,
+        "data": "15",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Salário RF",
+        "val_str": "R$ 6.360,00",
+        "val": 6360.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 2",
+        "val_str": "R$ 2.000,00",
+        "val": 2000.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "GASTOS IBNET / ESTORNO",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "30",
+        "status": "Não recebido"
+      }
+    ],
+    "inter": [
+      {
+        "desc": "Montagem móveis Melinda",
+        "val": 35.32,
+        "parc": "9 de 10",
+        "cat": "Casa",
+        "val_str": "R$ 35,32"
+      },
+      {
+        "desc": "Colchão Igor e Nath",
+        "val": 249.91,
+        "parc": "11 de 12",
+        "cat": "Casa",
+        "val_str": "R$ 249,91"
+      },
+      {
+        "desc": "Livelo Clube",
+        "val": 42.65,
+        "parc": "7 de 12",
+        "cat": "Lazer",
+        "val_str": "R$ 42,65"
+      }
+    ],
     "itau": [],
     "nubank": [],
     "caixa": [],
-    "nubank_nath": []
+    "nubank_nath": [
+      {
+        "desc": "Apple Watch - ML",
+        "val": 154.25,
+        "parc": "9 de 12",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 154,25"
+      },
+      {
+        "desc": "iCloud",
+        "val": 5.9,
+        "parc": "Recorrente",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 5,90"
+      }
+    ],
+    "comprovantes": []
+  },
+  "SETEMBRO": {
+    "gastos": [
+      {
+        "desc": "Água",
+        "val_str": "R$ 209,00",
+        "val": 209.0,
+        "data": "30",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Energia",
+        "val_str": "R$ 480,00",
+        "val": 480.0,
+        "data": "10",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Condomínio",
+        "val_str": "R$ 550,00",
+        "val": 550.0,
+        "data": "15",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Internet res.",
+        "val_str": "R$ 99,90",
+        "val": 99.9,
+        "data": "10",
+        "obs": "Déb. Automático",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Dízimo",
+        "val_str": "R$ 800,00",
+        "val": 800.0,
+        "data": "1",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Sobrancelha Nath",
+        "val_str": "R$ 50,00",
+        "val": 50.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento",
+        "val_str": "R$ 2.342,00",
+        "val": 2342.0,
+        "data": "15",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Capitalização",
+        "val_str": "R$ 400,00",
+        "val": 400.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Inter",
+        "val_str": "R$ 327,88",
+        "val": 327.88,
+        "data": "2",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Nubank",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Caixa",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Pagamento JANE",
+        "val_str": "R$ 180,00",
+        "val": 180.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Plano de saúde Nath e Mel",
+        "val_str": "R$ 626,00",
+        "val": 626.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura NUBANK Nath",
+        "val_str": "R$ 160,15",
+        "val": 160.15,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "GUARDAR P/ EUA",
+        "val_str": "R$ 1.000,00",
+        "val": 1000.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Seguro carro",
+        "val_str": "R$ 205,00",
+        "val": 205.0,
+        "data": "12",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "IPVA",
+        "val_str": "R$ 260,00",
+        "val": 260.0,
+        "data": "15",
+        "obs": "9 de 9",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Cartão Itaú",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento HB20",
+        "val_str": "R$ 1.320,00",
+        "val": 1320.0,
+        "data": "",
+        "obs": "26 de 38",
+        "status": "Não pago"
+      }
+    ],
+    "receitas": [
+      {
+        "desc": "RT AlanTel",
+        "val_str": "R$ 200,00",
+        "val": 200.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Intel Fibra",
+        "val_str": "R$ 250,00",
+        "val": 250.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Gyn",
+        "val_str": "R$ 300,00",
+        "val": 300.0,
+        "data": "10",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 1",
+        "val_str": "R$ 4.500,00",
+        "val": 4500.0,
+        "data": "15",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Salário RF",
+        "val_str": "R$ 6.360,00",
+        "val": 6360.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 2",
+        "val_str": "R$ 2.000,00",
+        "val": 2000.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "GASTOS IBNET / ESTORNO",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "30",
+        "status": "Não recebido"
+      }
+    ],
+    "inter": [
+      {
+        "desc": "Montagem móveis Melinda",
+        "val": 35.32,
+        "parc": "10 de 10",
+        "cat": "Casa",
+        "val_str": "R$ 35,32"
+      },
+      {
+        "desc": "Colchão Igor e Nath",
+        "val": 249.91,
+        "parc": "12 de 12",
+        "cat": "Casa",
+        "val_str": "R$ 249,91"
+      },
+      {
+        "desc": "Livelo Clube",
+        "val": 42.65,
+        "parc": "8 de 12",
+        "cat": "Lazer",
+        "val_str": "R$ 42,65"
+      }
+    ],
+    "itau": [],
+    "nubank": [],
+    "caixa": [],
+    "nubank_nath": [
+      {
+        "desc": "Apple Watch - ML",
+        "val": 154.25,
+        "parc": "10 de 12",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 154,25"
+      },
+      {
+        "desc": "iCloud",
+        "val": 5.9,
+        "parc": "Recorrente",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 5,90"
+      }
+    ],
+    "comprovantes": []
+  },
+  "OUTUBRO": {
+    "gastos": [
+      {
+        "desc": "Água",
+        "val_str": "R$ 209,00",
+        "val": 209.0,
+        "data": "30",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Energia",
+        "val_str": "R$ 480,00",
+        "val": 480.0,
+        "data": "10",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Condomínio",
+        "val_str": "R$ 550,00",
+        "val": 550.0,
+        "data": "15",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Internet res.",
+        "val_str": "R$ 99,90",
+        "val": 99.9,
+        "data": "10",
+        "obs": "Déb. Automático",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Dízimo",
+        "val_str": "R$ 800,00",
+        "val": 800.0,
+        "data": "1",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Sobrancelha Nath",
+        "val_str": "R$ 50,00",
+        "val": 50.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento",
+        "val_str": "R$ 2.342,00",
+        "val": 2342.0,
+        "data": "15",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Capitalização",
+        "val_str": "R$ 400,00",
+        "val": 400.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Inter",
+        "val_str": "R$ 42,65",
+        "val": 42.65,
+        "data": "2",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Nubank",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Caixa",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Pagamento JANE",
+        "val_str": "R$ 180,00",
+        "val": 180.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Plano de saúde Nath e Mel",
+        "val_str": "R$ 626,00",
+        "val": 626.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura NUBANK Nath",
+        "val_str": "R$ 160,15",
+        "val": 160.15,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "GUARDAR P/ EUA",
+        "val_str": "R$ 1.000,00",
+        "val": 1000.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Seguro carro",
+        "val_str": "R$ 205,00",
+        "val": 205.0,
+        "data": "12",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento HB20",
+        "val_str": "R$ 1.320,00",
+        "val": 1320.0,
+        "data": "",
+        "obs": "27 de 38",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Cartão Itaú",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "",
+        "status": "Não pago"
+      }
+    ],
+    "receitas": [
+      {
+        "desc": "RT AlanTel",
+        "val_str": "R$ 200,00",
+        "val": 200.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Intel Fibra",
+        "val_str": "R$ 250,00",
+        "val": 250.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Gyn",
+        "val_str": "R$ 300,00",
+        "val": 300.0,
+        "data": "10",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 1",
+        "val_str": "R$ 4.500,00",
+        "val": 4500.0,
+        "data": "15",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Salário RF",
+        "val_str": "R$ 6.360,00",
+        "val": 6360.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 2",
+        "val_str": "R$ 2.000,00",
+        "val": 2000.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "GASTOS IBNET / ESTORNO",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "30",
+        "status": "Não recebido"
+      }
+    ],
+    "inter": [
+      {
+        "desc": "Livelo Clube",
+        "val": 42.65,
+        "parc": "8 de 12",
+        "cat": "Lazer",
+        "val_str": "R$ 42,65"
+      }
+    ],
+    "itau": [],
+    "nubank": [],
+    "caixa": [],
+    "nubank_nath": [
+      {
+        "desc": "Apple Watch - ML",
+        "val": 154.25,
+        "parc": "11 de 12",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 154,25"
+      },
+      {
+        "desc": "iCloud",
+        "val": 5.9,
+        "parc": "Recorrente",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 5,90"
+      }
+    ],
+    "comprovantes": []
+  },
+  "NOVEMBRO": {
+    "gastos": [
+      {
+        "desc": "Água",
+        "val_str": "R$ 209,00",
+        "val": 209.0,
+        "data": "30",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Energia",
+        "val_str": "R$ 480,00",
+        "val": 480.0,
+        "data": "10",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Condomínio",
+        "val_str": "R$ 550,00",
+        "val": 550.0,
+        "data": "15",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Internet res.",
+        "val_str": "R$ 99,90",
+        "val": 99.9,
+        "data": "10",
+        "obs": "Déb. Automático",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Dízimo",
+        "val_str": "R$ 800,00",
+        "val": 800.0,
+        "data": "1",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Sobrancelha Nath",
+        "val_str": "R$ 50,00",
+        "val": 50.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento",
+        "val_str": "R$ 2.342,00",
+        "val": 2342.0,
+        "data": "15",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Capitalização",
+        "val_str": "R$ 400,00",
+        "val": 400.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Inter",
+        "val_str": "R$ 42,65",
+        "val": 42.65,
+        "data": "2",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Nubank",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Caixa",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Pagamento JANE",
+        "val_str": "R$ 180,00",
+        "val": 180.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Plano de saúde Nath e Mel",
+        "val_str": "R$ 626,00",
+        "val": 626.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura NUBANK Nath",
+        "val_str": "R$ 160,15",
+        "val": 160.15,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "GUARDAR P/ EUA",
+        "val_str": "R$ 1.000,00",
+        "val": 1000.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Seguro carro",
+        "val_str": "R$ 205,00",
+        "val": 205.0,
+        "data": "12",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento HB20",
+        "val_str": "R$ 1.320,00",
+        "val": 1320.0,
+        "data": "",
+        "obs": "28 de 38",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Cartão Itaú",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "",
+        "status": "Não pago"
+      }
+    ],
+    "receitas": [
+      {
+        "desc": "RT AlanTel",
+        "val_str": "R$ 200,00",
+        "val": 200.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Intel Fibra",
+        "val_str": "R$ 250,00",
+        "val": 250.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Gyn",
+        "val_str": "R$ 300,00",
+        "val": 300.0,
+        "data": "10",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 1",
+        "val_str": "R$ 4.500,00",
+        "val": 4500.0,
+        "data": "15",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Salário RF",
+        "val_str": "R$ 6.360,00",
+        "val": 6360.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 2",
+        "val_str": "R$ 2.000,00",
+        "val": 2000.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "GASTOS IBNET / ESTORNO",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "30",
+        "status": "Não recebido"
+      }
+    ],
+    "inter": [
+      {
+        "desc": "Livelo Clube",
+        "val": 42.65,
+        "parc": "9 de 12",
+        "cat": "Lazer",
+        "val_str": "R$ 42,65"
+      }
+    ],
+    "itau": [],
+    "nubank": [],
+    "caixa": [],
+    "nubank_nath": [
+      {
+        "desc": "Apple Watch - ML",
+        "val": 154.25,
+        "parc": "12 de 12",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 154,25"
+      },
+      {
+        "desc": "iCloud",
+        "val": 5.9,
+        "parc": "Recorrente",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 5,90"
+      }
+    ],
+    "comprovantes": []
+  },
+  "DEZEMBRO": {
+    "gastos": [
+      {
+        "desc": "Água",
+        "val_str": "R$ 209,00",
+        "val": 209.0,
+        "data": "30",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Energia",
+        "val_str": "R$ 480,00",
+        "val": 480.0,
+        "data": "10",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Condomínio",
+        "val_str": "R$ 550,00",
+        "val": 550.0,
+        "data": "15",
+        "obs": "Variável",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Internet res.",
+        "val_str": "R$ 99,90",
+        "val": 99.9,
+        "data": "10",
+        "obs": "Déb. Automático",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Dízimo",
+        "val_str": "R$ 800,00",
+        "val": 800.0,
+        "data": "1",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Sobrancelha Nath",
+        "val_str": "R$ 50,00",
+        "val": 50.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento",
+        "val_str": "R$ 2.342,00",
+        "val": 2342.0,
+        "data": "15",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Capitalização",
+        "val_str": "R$ 400,00",
+        "val": 400.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Inter",
+        "val_str": "R$ 42,65",
+        "val": 42.65,
+        "data": "2",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Nubank",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura Caixa",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Pagamento JANE",
+        "val_str": "R$ 180,00",
+        "val": 180.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Plano de saúde Nath e Mel",
+        "val_str": "R$ 626,00",
+        "val": 626.0,
+        "data": "5",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Fatura NUBANK Nath",
+        "val_str": "R$ 250,33",
+        "val": 250.33,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "GUARDAR P/ EUA",
+        "val_str": "R$ 1.000,00",
+        "val": 1000.0,
+        "data": "",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Seguro carro",
+        "val_str": "R$ 205,00",
+        "val": 205.0,
+        "data": "12",
+        "obs": "Recorrente",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Financiamento HB20",
+        "val_str": "R$ 1.320,00",
+        "val": 1320.0,
+        "data": "",
+        "obs": "28 de 38",
+        "status": "Não pago"
+      },
+      {
+        "desc": "Cartão Itaú",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "",
+        "obs": "",
+        "status": "Não pago"
+      }
+    ],
+    "receitas": [
+      {
+        "desc": "RT AlanTel",
+        "val_str": "R$ 200,00",
+        "val": 200.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Intel Fibra",
+        "val_str": "R$ 250,00",
+        "val": 250.0,
+        "data": "5",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "RT Gyn",
+        "val_str": "R$ 300,00",
+        "val": 300.0,
+        "data": "10",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 1",
+        "val_str": "R$ 4.500,00",
+        "val": 4500.0,
+        "data": "15",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Salário RF",
+        "val_str": "R$ 6.360,00",
+        "val": 6360.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "Pró labore 2",
+        "val_str": "R$ 2.000,00",
+        "val": 2000.0,
+        "data": "30",
+        "status": "Não recebido"
+      },
+      {
+        "desc": "GASTOS IBNET / ESTORNO",
+        "val_str": "R$ 0,00",
+        "val": 0.0,
+        "data": "30",
+        "status": "Não recebido"
+      }
+    ],
+    "inter": [
+      {
+        "desc": "Livelo Clube",
+        "val": 42.65,
+        "parc": "10 de 12",
+        "cat": "Lazer",
+        "val_str": "R$ 42,65"
+      }
+    ],
+    "itau": [],
+    "nubank": [],
+    "caixa": [],
+    "nubank_nath": [
+      {
+        "desc": "Apple Watch - ML",
+        "val": 154.25,
+        "parc": "3 de 12",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 154,25"
+      },
+      {
+        "desc": "iCloud",
+        "val": 5.9,
+        "parc": "Recorrente",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 5,90"
+      },
+      {
+        "desc": "Shopee descobrir",
+        "val": 60.87,
+        "parc": "5 de 7",
+        "cat": "Eletrônicos",
+        "val_str": "R$ 60,87"
+      },
+      {
+        "desc": "Wepink",
+        "val": 29.31,
+        "parc": "4 de 6",
+        "cat": "Serviços",
+        "val_str": "R$ 29,31"
+      }
+    ],
+    "comprovantes": []
   }
 }
